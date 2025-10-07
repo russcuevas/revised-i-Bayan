@@ -20,6 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && $resident_id) {
     $middle_name = $_POST['middle_name'];
     $last_name = $_POST['last_name'];
     $suffix = $_POST['suffix'] ?? null;
+    $street = $_POST['street'];
     $purok = $_POST['purok'];
     $gender = $_POST['gender'];
     $date_of_birth = $_POST['birthday'];
@@ -35,10 +36,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && $resident_id) {
     $philhealth_number = $_POST['philhealth'] ?? null;
 
     $stmt = $conn->prepare("INSERT INTO tbl_residents_family_members (
-        resident_id, barangay_address, first_name, middle_name, last_name, suffix, purok, relationship, gender, date_of_birth, birthplace, age,
+        resident_id, barangay_address, first_name, middle_name, last_name, suffix, street, purok, relationship, gender, date_of_birth, birthplace, age,
         civil_status, is_working, is_approved, is_barangay_voted, years_in_barangay, phone_number, philhealth_number, school, occupation
     ) VALUES (
-        :resident_id, :barangay_address, :first_name, :middle_name, :last_name, :suffix, :purok, :relationship, :gender, :date_of_birth, :birthplace, :age,
+        :resident_id, :barangay_address, :first_name, :middle_name, :last_name, :suffix, :street, :purok, :relationship, :gender, :date_of_birth, :birthplace, :age,
         :civil_status, :is_working, 0, :is_barangay_voted, :years_in_barangay, :phone_number, :philhealth_number, :school, :occupation
     )");
 
@@ -49,6 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && $resident_id) {
         ':middle_name' => $middle_name,
         ':last_name' => $last_name,
         ':suffix' => $suffix,
+        ':street' => $street,
         ':purok' => $purok,
         ':relationship' => $relationship,
         ':gender' => $gender,
@@ -324,6 +326,15 @@ foreach ($family_members as $member) {
                                                 <div class="form-line">
                                                     <input type="text" class="form-control" name="suffix">
                                                     <label class="form-label">Suffix</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6" style="margin-top: 10px;">
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="street" required>
+                                                    <label class="form-label">Street <span style="color: red;">*</span></label>
                                                 </div>
                                             </div>
                                         </div>

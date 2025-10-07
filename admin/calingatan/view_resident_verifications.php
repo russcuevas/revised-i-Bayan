@@ -331,6 +331,7 @@ if (isset($_POST['reject_all']) && !empty($_POST['rejection_note'])) {
                                     ?>
                                     <p><strong>Full Name:</strong> <?= htmlspecialchars($resident['first_name'] . ' ' . $resident['middle_name'] . ' ' . $resident['last_name'] . ' ' . $resident['suffix']) ?></p>
                                     <p><strong>Gender:</strong> <?= htmlspecialchars($resident['gender']) ?></p>
+                                    <p><strong>Street:</strong> <?= htmlspecialchars($resident['street']) ?></p>
                                     <p><strong>Purok:</strong> <?= htmlspecialchars($resident['purok']) ?></p>
                                 </div>
                                 <div class="col-md-6">

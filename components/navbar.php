@@ -46,7 +46,7 @@
                     <a class="nav-link active" href="home.php" style="color: #1a49cb;">HOME</a>
                 </li>
                 <li class="nav-item dropdown" style="margin-right: 10px;">
-                    <a class="nav-link" href="choose_type.php" style="color: #1a49cb;">LOGIN</a>
+                    <a class="nav-link" href="login.php" style="color: #1a49cb;">LOGIN</a>
                 </li>
             </ul>
         </div>

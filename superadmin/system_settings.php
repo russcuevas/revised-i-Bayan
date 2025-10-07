@@ -185,6 +185,14 @@ include '../database/connection.php';
                             </div>
                         </div>
                     </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12" onclick="window.location.href = 'system_backup.php'">
+                        <div class="thumbnail text-center d-flex flex-column align-items-center justify-content-center" style="padding: 50px;">
+                            <i class="fas fa-circle fa-3x mb-3 icon-style"></i>
+                            <div class="caption">
+                                <h3>Download System Data</h3>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 

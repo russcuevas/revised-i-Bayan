@@ -388,8 +388,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <!-- Requirements -->
                                         <h4 class="bold span-or mb-4" style="font-weight: 900; color: #1a49cb;">
                                             Requirements
-                                        </h4><br>
-
+                                        </h4>
+                                        <div class="alert alert-success mt-4" role="alert" style="border-left: 5px solid #1a49cb;">
+                                        <strong>Data Privacy Notice:</strong> In compliance with Republic Act No. 10173, otherwise known as the Data Privacy Act of 2012, 
+                                        all personal data collected will be treated with the highest level of confidentiality. 
+                                        Information provided will only be used for legitimate and authorized purposes related to this registration and will not be disclosed to third parties without your consent, unless required by law.
+                                        </div>
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <input type="file" class="form-control" name="valid_id" required>

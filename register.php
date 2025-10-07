@@ -14,13 +14,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $suffix = $_POST['suffix'] ?? null;
     $gender = $_POST['gender'] ?? '';
     $civil_status = $_POST['civil_status'] ?? '';
-
     $date_of_birth = $_POST['date_of_birth'] ?? '';
     $birthplace = $_POST['birthplace'] ?? '';
     $is_working = $_POST['is_working'] ?? 3;
     $school = $_POST['school'] ?? null;
     $occupation = $_POST['occupation'] ?? null;
     $barangay_address = $_POST['barangay_address'] ?? null;
+    $street = $_POST['street'] ?? '';
     $purok = $_POST['purok'] ?? '';
     $username = $_POST['username'] ?? '';
     $password = sha1($_POST['password']);
@@ -56,12 +56,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $stmt = $conn->prepare("INSERT INTO tbl_residents (
         first_name, middle_name, last_name, suffix, gender, civil_status, date_of_birth,
-        birthplace, is_working, school, occupation, barangay_address, purok,
+        birthplace, is_working, school, occupation, barangay_address, street, purok,
         username, password, email, valid_id, phone_number, is_approved,
         is_online, created_at, updated_at
     ) VALUES (
         :first_name, :middle_name, :last_name, :suffix, :gender, :civil_status, :date_of_birth,
-        :birthplace, :is_working, :school, :occupation, :barangay_address, :purok,
+        :birthplace, :is_working, :school, :occupation, :barangay_address, :street, :purok,
         :username, :password, :email, :valid_id, :phone_number, 0,
         'offline', :created_at, :updated_at
     )");
@@ -79,6 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ':school' => $school,
         ':occupation' => $occupation,
         ':barangay_address' => $barangay_address,
+        ':street' => $street,
         ':purok' => $purok,
         ':username' => $username,
         ':password' => $password,
@@ -89,30 +90,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ':updated_at' => $updated_at,
     ]);
 
-    $resident_id = $conn->lastInsertId(); // Get the new resident's ID
-
-    // Calculate age from date_of_birth
+    $resident_id = $conn->lastInsertId();
     $dob = new DateTime($date_of_birth);
     $today = new DateTime();
     $age = $dob->diff($today)->y;
 
     $stmtFamily = $conn->prepare("INSERT INTO tbl_residents_family_members (
-    resident_id, barangay_address, first_name, middle_name, last_name, suffix, purok, relationship, gender, civil_status,
+    resident_id, barangay_address, street, first_name, middle_name, last_name, suffix, purok, relationship, gender, civil_status,
     date_of_birth, birthplace, age, is_working, is_approved,
     is_barangay_voted, years_in_barangay, phone_number, philhealth_number, school, occupation
 ) VALUES (
-    :resident_id, :barangay_address, :first_name, :middle_name, :last_name, :suffix, :purok, :relationship, :gender, :civil_status,
+    :resident_id, :barangay_address, :street, :first_name, :middle_name, :last_name, :suffix, :purok, :relationship, :gender, :civil_status,
     :date_of_birth, :birthplace, :age, :is_working, 0,
     :is_barangay_voted, :years_in_barangay, :phone_number, NULL, :school, :occupation
 )");
 
 
-
-
-
+    //
     $stmtFamily->execute([
         ':resident_id' => $resident_id,
         ':barangay_address' => $barangay_address,
+        ':street' => $street,
         ':first_name' => $first_name,
         ':middle_name' => $middle_name,
         ':last_name' => $last_name,
@@ -311,6 +309,12 @@ $barangays = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                 <?php endforeach; ?>
 
                                             </select>
+                                            <div class="mb-3 mt-3 field-sysuser-sys_street required">
+                                                <div class="input-group">
+                                                    <input type="text" id="sysuser-sys_street" style="font-weight: 900" class="form-control" name="street" maxlength="500" placeholder="Street" required>
+                                                    <div class="invalid-feedback"></div>
+                                                </div>
+                                            </div>
                                             <div class="mb-3 mt-3 field-sysuser-sys_purok required">
                                                 <div class="input-group">
                                                     <input type="text" id="sysuser-sys_purok" style="font-weight: 900" class="form-control" name="purok" maxlength="500" placeholder="Purok" required>
@@ -384,11 +388,12 @@ $barangays = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                             </li>
                                         </ol>
                                         <hr>
-                                        <strong>Disclaimer</strong>
+                                        <strong>Privacy Notice</strong>
                                         <ol>
-                                            <li> In accordance to R.A. 10173 or Data Privacy Act, all collected information will
-                                                be treated with utmost confidentiality and will not be subjected to public
-                                                disclosure. </li>
+                                            <li>In compliance with Republic Act No. 10173, otherwise known as the Data Privacy Act of 2012, we are committed to protecting the personal information you provide. All data collected through this system will be used solely for legitimate and authorized purposes related to the services offered.</li>
+                                            <li>Your personal information will be stored securely and accessed only by authorized personnel. We implement appropriate organizational, physical, and technical measures to safeguard your data against unauthorized access, alteration, disclosure, or destruction.</li>
+                                            <li>We do not share or disclose any personal information to third parties without your consent, except when required by law or legal process.</li>
+                                            <li>By submitting your information, you acknowledge that you have read and understood this Privacy Notice and consent to the collection and processing of your personal data as described.</li>
                                         </ol>
                                         <hr>
                                         <label for="isChecked">

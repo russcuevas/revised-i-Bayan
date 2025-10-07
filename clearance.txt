@@ -300,3 +300,13 @@ CREATE TABLE tbl_chats (
 
 
 
+
+// changes
+login.php
+register.php
+dashboard/family_profiling.php
+dashboard/request_certificate.php
+dashboard/request_operate.php
+dashboard/request_closure.php
+dashboard/certificate_cedula.php
+admin/view_resident_verifications.php

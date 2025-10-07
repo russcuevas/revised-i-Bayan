@@ -115,7 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
             <button class="btn btn-primary w-100 rounded-pill mt-3 mb-3" style="font-weight: 900;" name="" type="submit">Login ➜</button>
-            <a href="choose_type.php" class="btn btn-secondary w-100 rounded-pill mb-3" style="font-weight: 900;">Go back</a>
+            <a href="home.php" class="btn btn-secondary w-100 rounded-pill mb-3" style="font-weight: 900;">Go back</a>
 
             <div class="d-flex justify-content-center align-items-center">
                 <div>
