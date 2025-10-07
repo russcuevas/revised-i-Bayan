@@ -1,0 +1,366 @@
+<?php
+session_start();
+include '../../database/connection.php';
+
+$barangay = basename(__DIR__);
+$session_key = "admin_id_$barangay";
+
+if (!isset($_SESSION[$session_key])) {
+    header("Location: ../login.php");
+    exit();
+}
+
+$barangay_name_key = "barangay_name_$barangay";
+$admin_name_key = "admin_name_$barangay";
+$admin_position_key = "admin_position_$barangay";
+
+if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+    echo "Invalid request.";
+    exit();
+}
+
+$operate_id = $_GET['id'];
+$stmt = $conn->prepare("
+    SELECT o.*, b.barangay_name, t.name AS business_type_name
+    FROM tbl_operate AS o
+    LEFT JOIN tbl_barangay AS b ON o.for_barangay = b.id
+    LEFT JOIN tbl_business_trade AS t ON o.business_trade = t.id
+    WHERE o.id = ?
+");
+$stmt->execute([$operate_id]);
+$operate = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+if (!$operate) {
+    echo "Operate not found.";
+    exit();
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['status'], $_POST['operate_id'])) {
+    $new_status = $_POST['status'];
+    $operate_id = $_POST['operate_id'];
+
+    // Update the status of the operation in tbl_operate
+    $update = $conn->prepare("UPDATE tbl_operate SET status = ?, updated_at = NOW() WHERE id = ?");
+    $updated = $update->execute([$new_status, $operate_id]);
+
+    // If status is "Claimed", insert into tbl_operate_claimed
+    if ($updated && $new_status === 'Claimed') {
+        $stmt = $conn->prepare("SELECT * FROM tbl_operate WHERE id = ?");
+        $stmt->execute([$operate_id]);
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($data) {
+            $insert = $conn->prepare("
+                INSERT INTO tbl_operate_claimed (
+                    resident_id, document_number, picked_up_by, relationship, certificate_type,
+                    purpose, business_name, business_trade, business_address, owner_name,
+                    owner_purok, email, contact, for_barangay, valid_id,
+                    birth_certificate, is_resident, total_amount, status, created_at, updated_at
+                ) VALUES (
+                    :resident_id, :document_number, :picked_up_by, :relationship, :certificate_type,
+                    :purpose, :business_name, :business_trade, :business_address, :owner_name,
+                    :owner_purok, :email, :contact, :for_barangay, :valid_id,
+                    :birth_certificate, :is_resident, :total_amount, :status, :created_at, :updated_at
+                )
+            ");
+
+            $insert->execute([
+                ':resident_id' => $data['resident_id'],
+                ':document_number' => $data['document_number'],
+                ':picked_up_by' => $data['picked_up_by'],
+                ':relationship' => $data['relationship'],
+                ':certificate_type' => $data['certificate_type'],
+                ':purpose' => $data['purpose'],
+                ':business_name' => $data['business_name'],
+                ':business_trade' => $data['business_trade'],
+                ':business_address' => $data['business_address'],
+                ':owner_name' => $data['owner_name'],
+                ':owner_purok' => $data['owner_purok'],
+                ':email' => $data['email'],
+                ':contact' => $data['contact'],
+                ':for_barangay' => $data['for_barangay'],
+                ':valid_id' => $data['valid_id'],
+                ':birth_certificate' => $data['birth_certificate'],
+                ':is_resident' => $data['is_resident'],
+                ':total_amount' => $data['total_amount'],
+                ':status' => $new_status,
+                ':created_at' => $data['created_at'],
+                ':updated_at' => date('Y-m-d H:i:s')
+            ]);
+        }
+    }
+
+    // If status is "To Pick Up", send an SMS to the resident
+    elseif ($updated && $new_status === 'To Pick Up') {
+        // Fetch the operation data for "To Pick Up"
+        $stmt = $conn->prepare("SELECT * FROM tbl_operate WHERE id = ?");
+        $stmt->execute([$operate_id]);
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($data) {
+            $resident_stmt = $conn->prepare("SELECT phone_number, first_name FROM tbl_residents WHERE id = ?");
+            $resident_stmt->execute([$data['resident_id']]);
+            $resident = $resident_stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($resident && !empty($resident['phone_number'])) {
+                $apikey = 'b2a42d09e5cd42585fcc90bf1eeff24e';
+                $number = $resident['phone_number'];
+                $name = ucfirst(strtolower($resident['first_name']));
+                $amount = number_format($data['total_amount'], 2);
+                $certificate_type = ucfirst(strtolower($data['certificate_type']));
+                $message = "Hi $name, your $certificate_type is ready for pickup. Please bring ₱$amount. Thank you!";
+                $sendername = 'BPTOCEANUS';
+
+                $ch = curl_init();
+                $parameters = [
+                    'apikey' => $apikey,
+                    'number' => $number,
+                    'message' => $message,
+                    'sendername' => $sendername
+                ];
+
+                curl_setopt($ch, CURLOPT_URL, 'https://semaphore.co/api/v4/messages');
+                curl_setopt($ch, CURLOPT_POST, 1);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($parameters));
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+                $output = curl_exec($ch);
+                curl_close($ch);
+            }
+        }
+    }
+
+    // Success message and redirect to the operate information page
+    $_SESSION['success'] = "Status updated successfully.";
+    header("Location: operate_view_information.php?id=" . $operate_id);
+    exit();
+}
+
+
+
+?>
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>iBayan</title>
+    <link rel="icon" href="../img/logo.png" type="image/x-icon">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" />
+    <link href="../plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../plugins/node-waves/waves.css" rel="stylesheet" />
+    <link href="../plugins/animate-css/animate.css" rel="stylesheet" />
+    <link href="../plugins/morrisjs/morris.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/custom.css" rel="stylesheet">
+    <link href="../css/themes/all-themes.css" rel="stylesheet" />
+    <link href="../plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+</head>
+
+<body class="theme-teal">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-teal">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Please wait...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Top Bar -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+                <a href="javascript:void(0);" class="bars"></a>
+                <a id="app-title" style="display:flex;align-items:center;" class="navbar-brand" href="index.php">
+                    <img id="bcas-logo" style="width:45px;display:inline;margin-right:10px;" src="../img/logo.png" />
+                    <div>
+                        <div style="color: white;">iBayan</div>
+                    </div>
+                </a>
+
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- #END# Tasks -->
+                    <li class="pull-right"><a href="javascript:void(0);" class="js-right-sidebar" data-close="true"><i
+                                class="material-icons">account_circle</i></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section>
+        <?php include('left_sidebar.php'); ?>
+        <?php include('right_sidebar.php'); ?>
+    </section>
+    <section class="content">
+        <div class="container-fluid" style="min-height: 80vh; display: flex; align-items: center; justify-content: center;">
+            <div class="row clearfix" style="width: 100%; max-width: 800px;">
+                <div class="card shadow" style="border-radius: 12px;">
+                    <div class="body p-4">
+                        <h4 class="text-left mb-4" style="font-weight: 800; color: #1a49cb;">
+                            Operate Details -
+                            <span class="badge bg-blue"><?= ucfirst($operate['status'] ?? 'Pending') ?></span>
+                        </h4>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3"><strong>Document Number:</strong><br><?= htmlspecialchars($operate['document_number']) ?></div>
+                            <div class="col-md-6 mb-3"><strong>Barangay:</strong><span style="text-transform: capitalize;"><br><?= htmlspecialchars($operate['barangay_name']) ?></span></div>
+
+                            <div class="col-md-6 mb-3"><strong>Certificate Type:</strong><br><?= htmlspecialchars($operate['certificate_type']) ?></div>
+                            <div class="col-md-6 mb-3"><strong>Purpose:</strong><br><?= htmlspecialchars($operate['purpose']) ?></div>
+
+                            <div class="col-md-6 mb-3"><strong>Business Name:</strong><br><?= htmlspecialchars($operate['business_name']) ?></div>
+                            <div class="col-md-6 mb-3"><strong>Business Type:</strong><br><?= htmlspecialchars($operate['business_type_name']) ?></div>
+                            <div class="col-md-6 mb-3"><strong>Business Address:</strong><br><?= htmlspecialchars($operate['business_address']) ?></div>
+
+                            <div class="col-md-6 mb-3"><strong>Owner Name:</strong><br><?= htmlspecialchars($operate['owner_name']) ?></div>
+                            <div class="col-md-6 mb-3"><strong>Purok:</strong><br><?= htmlspecialchars($operate['owner_purok']) ?></div>
+
+                            <div class="col-md-6 mb-3"><strong>Email:</strong><br><?= htmlspecialchars($operate['email']) ?></div>
+                            <div class="col-md-6 mb-3"><strong>Contact:</strong><br><?= htmlspecialchars($operate['contact']) ?></div>
+
+                            <div class="col-md-6 mb-3"><strong>Picked Up By:</strong><br><?= htmlspecialchars($operate['picked_up_by']) ?> - <span style="text-transform: capitalize;"><?= htmlspecialchars($operate['relationship']) ?></span></div>
+
+                            <div class="col-md-6 mb-3"><strong>Resident:</strong><br><?= htmlspecialchars($operate['is_resident']) ?></div>
+
+                            <div class="col-md-6 mb-3">
+                                <strong>Total Amount:</strong><br>
+                                <span class="text-success">₱<?= number_format($operate['total_amount'], 2) ?>
+                                    <?php if ($operate['status'] === 'Claimed'): ?>
+                                        / Paid
+                                    <?php endif; ?>
+                                </span>
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <h5 class="mb-3" style="color: #1a49cb;"><strong>Uploaded Documents</strong></h5>
+                        <div class="row">
+                            <div class="col-md-6 mb-2">
+                                <strong>Valid ID:</strong><br>
+                                <?php if (!empty($operate['valid_id'])): ?>
+                                    <a class="btn btn-sm bg-red" href="../../public/request/valid_id/<?= htmlspecialchars($operate['valid_id']) ?>" target="_blank">
+                                        <i class="fa fa-eye"></i> View Valid ID
+                                    </a>
+                                <?php else: ?>
+                                    <span class="text-danger">Not Uploaded</span>
+                                <?php endif; ?>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <strong>Birth Certificate:</strong><br>
+                                <?php if (!empty($operate['birth_certificate'])): ?>
+                                    <a class="btn btn-sm bg-red" href="../../public/request/birth_certificate/<?= htmlspecialchars($operate['birth_certificate']) ?>" target="_blank">
+                                        <i class="fa fa-eye"></i> View Birth Certificate
+                                    </a>
+                                <?php else: ?>
+                                    <span class="text-danger">Not Uploaded</span>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <!-- Update Status -->
+                        <form action="" method="POST" class="mb-3">
+                            <input type="hidden" name="operate_id" value="<?= $operate['id'] ?>">
+                            <div class="form-group">
+                                <label><strong>Change Status:</strong></label>
+                                <select name="status" class="form-control" style="border: 2px solid black;" required>
+                                    <?php if ($operate['status'] === 'Pending'): ?>
+                                        <option disabled selected>Pending</option>
+                                        <option value="To Pick Up">To Pick Up</option>
+                                    <?php elseif ($operate['status'] === 'To Pick Up'): ?>
+                                        <option disabled selected>To Pick Up</option>
+                                        <option value="Claimed">Claimed</option>
+                                    <?php else: ?>
+                                        <option disabled selected><?= htmlspecialchars($operate['status']) ?></option>
+                                    <?php endif; ?>
+                                </select>
+                            </div>
+
+                            <?php if ($operate['status'] !== 'Claimed'): ?>
+                                <div class="row mt-3">
+                                    <div class="col-md-6">
+                                        <button type="submit" class="btn btn-primary btn-block w-100">
+                                            <i class="fa fa-check"></i> Update Status
+                                        </button>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a href="operate_reject_request.php?operate_id=<?= $operate['id'] ?>"
+                                            class="btn btn-danger btn-block w-100"
+                                            onclick="return confirm('Are you sure you want to reject this request?');">
+                                            <i class="fa fa-ban"></i> Reject Request
+                                        </a>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                        </form>
+
+
+                        <br>
+
+                        <div class="text-right mt-4">
+                            <a href="certificate_operate.php" class="btn bg-red"><i class="fa fa-arrow-left"></i> Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+
+
+    <script src="../plugins/jquery/jquery.min.js"></script>
+    <script src="../plugins/bootstrap/js/bootstrap.js"></script>
+    <script src="../plugins/jquery-validation/jquery.validate.js"></script>
+    <script src="../js/pages/forms/form-validation.js"></script>
+    <script src="../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <script src="../plugins/node-waves/waves.js"></script>
+    <script src="../plugins/sweetalert/sweetalert.min.js"></script>
+    <script>
+        <?php if (isset($_SESSION['success'])): ?>
+            swal({
+                type: 'success',
+                title: 'Success!',
+                text: '<?php echo $_SESSION['success']; ?>',
+                confirmButtonText: 'OK'
+            });
+            <?php unset($_SESSION['success']); ?>
+        <?php elseif (isset($_SESSION['error'])): ?>
+            swal({
+                type: 'error',
+                title: 'Oops...',
+                text: '<?php echo $_SESSION['error']; ?>',
+                confirmButtonText: 'OK'
+            });
+            <?php unset($_SESSION['error']); ?>
+        <?php endif; ?>
+    </script>
+    <script src="../js/admin.js"></script>
+</body>
+
+</html>

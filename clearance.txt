@@ -1,0 +1,302 @@
+//SUPERADMIN
+
+tbl_superadmin
+first_name
+last_name
+age
+phone_number
+username
+email
+password
+
+
+tbl_system_configuration
+email_config
+sms_config
+
+
+
+//ADMIN
+
+[ -- FINISH --
+    tbl_barangay
+    barangay_name
+    municipality -> mataasnakahoy
+    zip - 4223
+    mission -> nullable
+    vision -> nullable
+    created_at
+    updated_at
+]
+
+[ -- FINISH --
+    tbl_barangay_officials
+    profile_picture
+    fullname
+    position
+    barangay -> foreign to tbl_barangay
+    created_at
+    updated_at
+]
+
+[ -- FINISH --
+    tbl_admin
+    barangay_id -> foreign to tbl_barangay -> id
+    username
+    password
+    email
+    fullname
+    gender
+    contact_number
+    position - staff,
+    status
+    created_at
+    updated_at
+]
+
+[   -- FINISH --
+    tbl_business_trade
+    code
+    name
+    price
+]
+
+
+// USERS
+[   -- FINISH --
+    tbl_residents
+    first_name
+    middle_name
+    last_name
+    suffix -> nullable
+    gender
+    civil_status
+    date_of_birth
+    birthplace
+    is_working
+    school -> nullable
+    occupation -> nullable
+    barangay_address -> foreign to tbl_barangay -> id
+    purok
+    username
+    password
+    email
+    valid_id
+    phone_number
+    is_approved -> 0 default
+    is_online default offline
+    remarks -> nullable
+    created_at
+    updated_at
+]
+
+[  -- FINISH --
+    tbl_residents_family_members
+    resident_id -> foreign to tbl_residents -> id
+    first_name
+    middle_name
+    last_name
+    suffix -> nullable
+    relationship
+    gender
+    date_of_birth
+    birthplace
+    age
+    civil_status
+    is_working
+    is_approved -> 0 default
+    is_barangay_voted -> 0 default
+    years_in_barangay
+    phone_number
+    philhealth_number
+    school -> nullable
+    occupation -> nullable
+]
+
+// DONE
+request certificates
+tbl_certificates
+resident_id -> foreign to tbl_residents -> id
+certificate_type
+purpose
+fullname
+gender
+email
+contact
+valid_id
+birth_certificate
+is_resident
+picked_up_by
+relationship
+total_amount
+for_barangay
+
+
+//DONE
+tbl_certificates_claimed
+resident_id -> foreign to tbl_residents -> id
+document_number - randomized
+picked_up_by
+relationship
+certificate_type
+purpose
+fullname
+email
+gender
+contact
+valid_id
+total_amount_paid
+for_barangay -> foreign to tbl_barangay -> id
+created_at
+updated_at
+
+// DONE
+clearance to operate
+tbl_operate
+resident_id -> foreign to tbl_residents -> id
+document_number - randomized
+picked_up_by
+relationship
+certificate_type -> Clearance to operate
+purpose
+business_name
+business_trade -> foreign id to tbl_business_trade -> id
+business_address
+owner_name
+owner_purok
+email
+contact
+for_barangay -> foreign to tbl_barangay -> id
+ -> foreign to tbl_barangay -> id
+valid_id
+birth_certificate
+is_resident
+total_amount
+status
+created_at
+updated_at
+
+// DONE
+tbl_operate_claimed
+resident_id -> foreign to tbl_residents -> id
+document_number - randomized
+picked_up_by
+relationship
+certificate_type -> Clearance to operate
+purpose
+business_name
+business_trade -> foreign id to tbl_business_trade -> id
+business_address
+owner_name
+owner_purok
+email
+contact
+for_barangay -> foreign to tbl_barangay -> id
+ -> foreign to tbl_barangay -> id
+valid_id
+birth_certificate
+is_resident
+total_amount
+status
+created_at
+updated_at
+
+cedula
+tbl_cedula
+resident_id -> foreign to tbl_residents -> id
+document_number - randomized
+cedula_number - randomized
+picked_up_by
+relationship
+certificate_type
+purpose
+fullname
+gender
+email
+contact
+civil_status
+tin
+profession
+basic_community_tax
+gross
+total_price
+interest
+total_amount_paid
+for_barangay -> foreign to tbl_barangay -> id
+
+created_at
+updated_at
+
+
+
+tbl_certificates_completed
+resident_id -> foreign to tbl_residents -> id
+document_number - randomized
+picked_up_by
+relationship
+certificate_type
+purpose
+fullname
+email
+gender
+contact
+valid_id
+birth_certificate
+is_resident
+is_barangay_clearance
+total_amount_paid
+for_barangay -> foreign to tbl_barangay -> id
+
+
+tbl_feedback
+resident_id -> foreign to tbl_residents -> id
+message
+rating
+barangay -> foreign to tbl_barangay -> id
+created_at
+
+[ -OKAY-
+    tbl_announcement
+    announcement_title
+    announcement_content
+    announcement_venue -> nullable
+    announcement_image -> nullable
+    barangay -> foreign to tbl_barangay -> id
+    status
+    created_at
+    updated_at
+]
+
+
+tbl_system_preference
+system_logo
+system_title
+created_at
+updated_at
+
+tbl_system_logs
+user_id
+action
+logged_in -> DATETIME
+logged_out -> DATETIME
+
+
+CREATE TABLE tbl_chats (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    room_id VARCHAR(100),
+    resident_id INT NULL,
+    admin_id INT NULL,
+    message TEXT NOT NULL,
+    sender_type ENUM('resident', 'admin') NOT NULL,
+    chat_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (resident_id) REFERENCES tbl_residents(id) ON DELETE CASCADE,
+    FOREIGN KEY (admin_id) REFERENCES tbl_admin(id) ON DELETE CASCADE
+);
+
+
+
+
+
+
+

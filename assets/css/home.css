@@ -1,0 +1,73 @@
+@font-face {
+    font-family: 'Gilroy';
+    src: url('../../font/Gilroy-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-weight: normal;
+}
+
+body {
+    font-family: 'Gilroy', serif;
+    font-weight: 900;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.lgu-logo-wrapper {
+    background-origin: content-box;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(http://localhost/iBayan/images/logo.png);
+    width: 70px;
+    height: 70px;
+    margin-top: 5px;
+    float: left;
+    margin-right: 20px;
+}
+
+.btn-primary {
+    background-color: #0047AB;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #003580;
+}
+
+.btn-warning {
+    font-weight: 600;
+    color: black;
+}
+
+.footer {
+    background-color: #2e2e2e;
+    color: white;
+    padding: 40px 0;
+}
+
+.footer img {
+    height: 40px;
+}
+
+.footer .egov-logo {
+    width: 100px;
+}
+
+.footer-time {
+    font-size: 0.9rem;
+}
+
+.verify-btn {
+    background: #FFC107;
+    border: none;
+}
+
+hr {
+    margin: 1rem 0;
+}
+
+.login-seal {
+    width: 180px;
+}

@@ -1,0 +1,76 @@
+@font-face {
+    font-family: 'Gilroy';
+    src: url('../../font/Gilroy-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-weight: normal;
+}
+
+body {
+    font-family: 'Gilroy', serif;
+    font-weight: 900;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.form-icon {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+}
+
+.login-container {
+    max-width: 400px;
+    margin: auto;
+    padding-top: 40px;
+    padding-bottom: 60px;
+    flex: 1;
+}
+
+.btn-primary {
+    background-color: #0047AB;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #003580;
+}
+
+.btn-warning {
+    font-weight: 600;
+    color: black;
+}
+
+.footer {
+    background-color: #2e2e2e;
+    color: white;
+    padding: 40px 0;
+}
+
+.footer img {
+    height: 40px;
+}
+
+.footer .egov-logo {
+    width: 100px;
+}
+
+.footer-time {
+    font-size: 0.9rem;
+}
+
+.verify-btn {
+    background: #FFC107;
+    border: none;
+}
+
+hr {
+    margin: 1rem 0;
+}
+
+.login-seal {
+    width: 180px;
+}
