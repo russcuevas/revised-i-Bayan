@@ -3,13 +3,13 @@
         <ul class="list">
             <li class="header" style="font-size: 12px">
                 WELCOME <br>
-                <span style="color: #1a49cb; text-transform: uppercase;">
+                <span style="color: #B6771D; text-transform: uppercase;">
                     BARANGAY <?= htmlspecialchars($_SESSION[$barangay_name_key]); ?>
                 </span><br>
-                <span style="color: #1a49cb; text-transform: uppercase;">
+                <span style="color: #B6771D; text-transform: uppercase;">
                     <?= htmlspecialchars($_SESSION[$admin_name_key]); ?>
                 </span><br>
-                <span style="color: #1a49cb; text-transform: uppercase;">
+                <span style="color: #B6771D; text-transform: uppercase;">
                     <?= htmlspecialchars($_SESSION[$admin_position_key]); ?>
                 </span>
             </li>

@@ -271,7 +271,7 @@ foreach ($family_members as $member) {
                                     <input type="hidden" name="resident_id" value="<?= htmlspecialchars($_SESSION["resident_id_" . basename(__DIR__)] ?? '') ?>">
                                     <input type="hidden" name="barangay_address" value="<?= htmlspecialchars($_SESSION["barangay_id_" . basename(__DIR__)] ?? '') ?>">
 
-                                    <h4 class="bold span-or mb-4" style="font-weight: 900; color: #1a49cb;">
+                                    <h4 class="bold span-or mb-4" style="font-weight: 900; color: #B6771D;">
                                         Relationship to Family Member
                                     </h4> <br>
 
@@ -292,7 +292,7 @@ foreach ($family_members as $member) {
                                         </div>
                                     </div>
 
-                                    <h4 class="bold span-or mb-4" style="font-weight: 900; color: #1a49cb;">
+                                    <h4 class="bold span-or mb-4" style="font-weight: 900; color: #B6771D;">
                                         Personal Information
                                     </h4> <br>
                                     <div class="row">
@@ -439,7 +439,7 @@ foreach ($family_members as $member) {
                                         </div>
                                     </div>
 
-                                    <h4 class="bold span-or mb-4" style="font-weight: 900; color: #1a49cb;">
+                                    <h4 class="bold span-or mb-4" style="font-weight: 900; color: #B6771D;">
                                         Other Information
                                     </h4> <br>
                                     <div class="row">

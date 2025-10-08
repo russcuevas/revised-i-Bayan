@@ -164,7 +164,7 @@ foreach ($claimed_tables as $table) {
         /* HOMEPAGE */
         .thumbnail {
             background-color: #ffffff;
-            border: 2px solid #1a49cb;
+            border: 2px solid #B6771D;
             border-radius: 10px;
             padding: 50px;
             transition: all 0.3s ease;
@@ -173,7 +173,7 @@ foreach ($claimed_tables as $table) {
         }
 
         .thumbnail:hover {
-            background-color: #1a49cb;
+            background-color: #B6771D;
             color: #ffffff;
             transform: scale(1.05);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
@@ -192,8 +192,8 @@ foreach ($claimed_tables as $table) {
         /* Toast */
         .toast-success {
             background-color: #ffffff !important;
-            color: #1a49cb !important;
-            border-left: 5px solid #1a49cb;
+            color: #B6771D !important;
+            border-left: 5px solid #B6771D;
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
         }
@@ -203,7 +203,7 @@ foreach ($claimed_tables as $table) {
             font-family: "Font Awesome 6 Free";
             font-weight: 900;
             margin-right: 10px;
-            color: #1a49cb;
+            color: #B6771D;
         }
 
 
@@ -270,7 +270,7 @@ foreach ($claimed_tables as $table) {
     <section class="content">
         <div class="container-fluid">
             <div class="block-header text-left">
-                <h3 style="color: #1a49cb;">Dashboard</h3>
+                <h3 style="color: #B6771D;">Dashboard</h3>
             </div>
             <div class="row clearfix">
                 <div class="col-sm-6 col-md-3 col-lg-6" onclick="window.location.href = 'manage_residents.php'">

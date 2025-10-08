@@ -95,7 +95,7 @@ $_SESSION["is_approved_$barangay"] = $is_approved;
         /* HOMEPAGE */
         .thumbnail {
             background-color: #ffffff;
-            border: 2px solid #1a49cb;
+            border: 2px solid #B6771D;
             border-radius: 10px;
             padding: 50px;
             transition: all 0.3s ease;
@@ -104,7 +104,7 @@ $_SESSION["is_approved_$barangay"] = $is_approved;
         }
 
         .thumbnail:hover {
-            background-color: #1a49cb;
+            background-color: #B6771D;
             color: #ffffff;
             transform: scale(1.05);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
@@ -175,7 +175,7 @@ $_SESSION["is_approved_$barangay"] = $is_approved;
         <div class="container">
             <div class="card">
                 <div class="body">
-                    <h4 class="text-center" style="font-weight: 900; color: #1a49cb;">Help Desk</h4>
+                    <h4 class="text-center" style="font-weight: 900; color: #B6771D;">Help Desk</h4>
                     <p class="text-center">
                         The Help Desk is your go-to support center for all concerns and inquiries related to barangay services. Whether you need assistance with document requests, family profiling, live chat communication, or providing feedback, our Help Desk is here to ensure a fast, reliable, and user-friendly experience for every resident.
                     </p>

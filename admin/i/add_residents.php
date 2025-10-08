@@ -121,7 +121,7 @@ $admin_barangay_name = $barangay_stmt->fetchColumn();
         /* HOMEPAGE */
         .thumbnail {
             background-color: #ffffff;
-            border: 2px solid #1a49cb;
+            border: 2px solid #B6771D;
             border-radius: 10px;
             padding: 50px;
             transition: all 0.3s ease;
@@ -130,7 +130,7 @@ $admin_barangay_name = $barangay_stmt->fetchColumn();
         }
 
         .thumbnail:hover {
-            background-color: #1a49cb;
+            background-color: #B6771D;
             color: #ffffff;
             transform: scale(1.05);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
@@ -218,7 +218,7 @@ $admin_barangay_name = $barangay_stmt->fetchColumn();
                             <form id="add_family_profiling" action="save_family_member.php" method="POST" style="margin-top: 20px;">
                                 <input type="hidden" name="barangay_address" value="<?= htmlspecialchars($admin_barangay_id ?? '') ?>">
 
-                                <h4 class="bold span-or mb-4" style="font-weight: 900; color: #1a49cb;">
+                                <h4 class="bold span-or mb-4" style="font-weight: 900; color: #B6771D;">
                                     Relationship to Family Member
                                 </h4> <br>
 
@@ -249,7 +249,7 @@ $admin_barangay_name = $barangay_stmt->fetchColumn();
                                     </div>
                                 </div>
 
-                                <h4 class="bold span-or mb-4" style="font-weight: 900; color: #1a49cb;">
+                                <h4 class="bold span-or mb-4" style="font-weight: 900; color: #B6771D;">
                                     Personal Information
                                 </h4> <br>
 

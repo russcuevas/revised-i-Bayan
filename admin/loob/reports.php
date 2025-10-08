@@ -94,7 +94,7 @@ $admin_barangay_id = $admin_stmt->fetchColumn();
         /* HOMEPAGE */
         .thumbnail {
             background-color: #ffffff;
-            border: 2px solid #1a49cb;
+            border: 2px solid #B6771D;
             border-radius: 10px;
             padding: 50px;
             transition: all 0.3s ease;
@@ -103,7 +103,7 @@ $admin_barangay_id = $admin_stmt->fetchColumn();
         }
 
         .thumbnail:hover {
-            background-color: #1a49cb;
+            background-color: #B6771D;
             color: #ffffff;
             transform: scale(1.05);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
@@ -133,8 +133,8 @@ $admin_barangay_id = $admin_stmt->fetchColumn();
             align-items: center;
             gap: 6px;
             background-color: #ffffff;
-            border: 2px solid #1a49cb;
-            color: #1a49cb;
+            border: 2px solid #B6771D;
+            color: #B6771D;
             padding: 8px 15px;
             font-size: 14px;
             font-weight: 600;
@@ -144,16 +144,16 @@ $admin_barangay_id = $admin_stmt->fetchColumn();
         }
 
         .report-tags li a:hover {
-            background-color: #1a49cb;
+            background-color: #B6771D;
             color: #ffffff;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
             transform: translateY(-2px);
         }
 
         .report-tags li a.active {
-            background-color: #1a49cb;
+            background-color: #B6771D;
             color: #ffffff;
-            border-color: #1a49cb;
+            border-color: #B6771D;
             box-shadow: 0 4px 12px rgba(26, 73, 203, 0.3);
             transform: translateY(-1px);
         }
@@ -221,7 +221,7 @@ $admin_barangay_id = $admin_stmt->fetchColumn();
             </div>
             <!-- Basic Validation -->
             <div class="block-header text-left">
-                <h3 style="color: #1a49cb;">Generate Reports</h3>
+                <h3 style="color: #B6771D;">Generate Reports</h3>
             </div>
             <div class="row clearfix">
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">

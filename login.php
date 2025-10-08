@@ -121,14 +121,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div>
                     <small class="small text-center">
                         Don't have an account yet?
-                        <a class="fw-bold text-primary" href="register.php" style="text-decoration: none;">Register</a> </small>
+                        <a class="fw-bold text-primary" href="register.php" style="text-decoration: none; color: #B6771D !important">Register</a> </small>
                 </div>
             </div>
             <div class="d-flex justify-content-center align-items-center">
                 <div>
                     <small class="small text-center">
                         Forgot Password?
-                        <a class="fw-bold text-primary" href="#" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal" style="text-decoration: none;">Click here to read</a>
+                        <a class="fw-bold text-primary" href="#" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal" style="text-decoration: none; color: #B6771D !important">Click here to read</a>
                 </div>
             </div>
         </form>

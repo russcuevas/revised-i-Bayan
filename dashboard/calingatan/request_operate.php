@@ -199,7 +199,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         /* HOMEPAGE */
         .thumbnail {
             background-color: #ffffff;
-            border: 2px solid #1a49cb;
+            border: 2px solid #B6771D;
             border-radius: 10px;
             padding: 50px;
             transition: all 0.3s ease;
@@ -208,7 +208,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         .thumbnail:hover {
-            background-color: #1a49cb;
+            background-color: #B6771D;
             color: #ffffff;
             transform: scale(1.05);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
@@ -301,7 +301,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <div class="col-md-6 pr-4">
 
                                         <!-- Request Information -->
-                                        <h4 class="bold span-or" style="font-weight: 900; color: #1a49cb;">
+                                        <h4 class="bold span-or" style="font-weight: 900; color: #B6771D;">
                                             Request Information
                                         </h4><br>
 
@@ -320,7 +320,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         </div>
 
                                         <!-- Business Information -->
-                                        <h4 class="bold span-or mt-4" style="font-weight: 900; color: #1a49cb;">
+                                        <h4 class="bold span-or mt-4" style="font-weight: 900; color: #B6771D;">
                                             Business Information
                                         </h4><br>
                                         <div class="form-group form-float">
@@ -386,10 +386,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <div class="col-md-6 pl-4">
 
                                         <!-- Requirements -->
-                                        <h4 class="bold span-or mb-4" style="font-weight: 900; color: #1a49cb;">
+                                        <h4 class="bold span-or mb-4" style="font-weight: 900; color: #B6771D;">
                                             Requirements
                                         </h4>
-                                        <div class="alert alert-success mt-4" role="alert" style="border-left: 5px solid #1a49cb;">
+                                        <div class="alert alert-success mt-4" role="alert" style="border-left: 5px solid #B6771D;">
                                         <strong>Data Privacy Notice:</strong> In compliance with Republic Act No. 10173, otherwise known as the Data Privacy Act of 2012, 
                                         all personal data collected will be treated with the highest level of confidentiality. 
                                         Information provided will only be used for legitimate and authorized purposes related to this registration and will not be disclosed to third parties without your consent, unless required by law.
@@ -417,7 +417,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         </div>
 
                                         <!-- Pickup Info -->
-                                        <h5 class="bold span-or mt-4" style="font-weight: 900; color: #1a49cb;">
+                                        <h5 class="bold span-or mt-4" style="font-weight: 900; color: #B6771D;">
                                             Pickup by: (leave blank if you will pick it up)
                                         </h5><br>
 

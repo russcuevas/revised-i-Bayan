@@ -35,8 +35,8 @@ $certificate_active = in_array($current_page, $certificate_pages);
         <ul class="list">
             <li class="header" style="font-size: 12px">
                 WELCOME TO BARANGAY <?= htmlspecialchars(strtoupper($barangay_name)) ?><br>
-                <span style="color: #1a49cb;"><?= htmlspecialchars($resident_name) ?></span><br>
-                <span style="color: #1a49cb;">RESIDENT</span>
+                <span style="color: #B6771D;"><?= htmlspecialchars($resident_name) ?></span><br>
+                <span style="color: #B6771D;">RESIDENT</span>
             </li>
 
             <li class="<?= $current_page == 'index.php' ? 'active' : '' ?>">

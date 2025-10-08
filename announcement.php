@@ -60,7 +60,7 @@
                 <option value="3">Three</option>
             </select>
         </form>
-        <div class="p-4 p-md-5 mb-4 text-white rounded" style="background-color: #1a49cb;">
+        <div class="p-4 p-md-5 mb-4 text-white rounded" style="background-color: #B6771D;">
             <div class="col-md-6 px-0">
                 <h1 class="display-4 fst-italic" style="font-weight: 900;">Barangay Calingatan</h1>
                 <p class="lead my-3"></p>

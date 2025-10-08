@@ -16,7 +16,7 @@ function getChartJs(type) {
                 datasets: [{
                     label: "My First dataset",
                     data: [65, 59, 80, 81, 56, 55, 40],
-                    borderColor: '#1a49cb',
+                    borderColor: '#B6771D',
                     backgroundColor: 'rgba(0, 61, 245, 0.71)',
                     pointBorderColor: 'rgba(0, 188, 212, 0)',
                     pointBackgroundColor: 'black',
@@ -37,11 +37,11 @@ function getChartJs(type) {
                 datasets: [{
                     label: "My First dataset",
                     data: [65, 59, 80, 81, 56, 55, 40],
-                    backgroundColor: '#1a49cb'
+                    backgroundColor: '#B6771D'
                 }, {
                     label: "My Second dataset",
                     data: [28, 48, 40, 19, 86, 27, 90],
-                    backgroundColor: '#1a49cb'
+                    backgroundColor: '#B6771D'
                 }]
             },
             options: {

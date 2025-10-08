@@ -275,7 +275,7 @@ a:hover {
 }
 
 .card .header {
-    color: #1a49cb !important;
+    color: #B6771D !important;
 }
 
 .tab-content {
@@ -294,7 +294,7 @@ a:hover {
 }
 
 .nav-tabs>li>a {
-    color: #1a49cb !important;
+    color: #B6771D !important;
     font-weight: 600 !important;
     font-size: 15px !important;
 }
@@ -321,7 +321,7 @@ body {
 }
 
 .navbar {
-    background-color: #1a49cb !important;
+    background-color: #B6771D !important;
 }
 
 .sidebar .menu .list .ml-menu li a {
@@ -365,7 +365,7 @@ body {
 /*menu items*/
 .theme-red .sidebar .menu .list li.active> :first-child i,
 .theme-red .sidebar .menu .list li.active> :first-child span {
-    color: #1a49cb !important
+    color: #B6771D !important
 }
 
 .block-header .breadcrumb {
@@ -373,11 +373,11 @@ body {
 }
 
 .pagination li.active a {
-    background-color: #1a49cb !important;
+    background-color: #B6771D !important;
 }
 
 .modal-title {
-    border-bottom: #1a49cb solid 1px;
+    border-bottom: #B6771D solid 1px;
     padding-bottom: 15px;
 }
 

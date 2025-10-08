@@ -97,7 +97,7 @@ $_SESSION["is_approved_$barangay"] = $is_approved;
         /* HOMEPAGE */
         .thumbnail {
             background-color: #ffffff;
-            border: 2px solid #1a49cb;
+            border: 2px solid #B6771D;
             border-radius: 10px;
             padding: 50px;
             transition: all 0.3s ease;
@@ -106,7 +106,7 @@ $_SESSION["is_approved_$barangay"] = $is_approved;
         }
 
         .thumbnail:hover {
-            background-color: #1a49cb;
+            background-color: #B6771D;
             color: #ffffff;
             transform: scale(1.05);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
@@ -125,8 +125,8 @@ $_SESSION["is_approved_$barangay"] = $is_approved;
         /* Toast */
         .toast-success {
             background-color: #ffffff !important;
-            color: #1a49cb !important;
-            border-left: 5px solid #1a49cb;
+            color: #B6771D !important;
+            border-left: 5px solid #B6771D;
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
         }
@@ -136,7 +136,7 @@ $_SESSION["is_approved_$barangay"] = $is_approved;
             font-family: "Font Awesome 6 Free";
             font-weight: 900;
             margin-right: 10px;
-            color: #1a49cb;
+            color: #B6771D;
         }
 
 
@@ -205,8 +205,8 @@ $_SESSION["is_approved_$barangay"] = $is_approved;
         <section class="content">
             <div class="container-fluid">
                 <div class="block-header text-center" style="margin-bottom: 50px !important;">
-                    <h3 style="color: #1a49cb;">Welcome User!</h3>
-                    <h3 style="color: #1a49cb;">Resident System for Mataasnakahoy Barangays</h3>
+                    <h3 style="color: #B6771D;">Welcome User!</h3>
+                    <h3 style="color: #B6771D;">Resident System for Mataasnakahoy Barangays</h3>
                 </div>
                 <!-- Widgets -->
                 <div class="row clearfix">
@@ -321,8 +321,8 @@ $_SESSION["is_approved_$barangay"] = $is_approved;
         <section class="content">
             <div class="container-fluid">
                 <div class="block-header text-center" style="margin-bottom: 50px !important;">
-                    <h3 style="color: #1a49cb;">Welcome!</h3>
-                    <h3 style="color: #1a49cb;">Resident System for Mataasnakahoy Barangays</h3>
+                    <h3 style="color: #B6771D;">Welcome!</h3>
+                    <h3 style="color: #B6771D;">Resident System for Mataasnakahoy Barangays</h3>
                 </div>
                 <!-- Widgets -->
                 <p><span style="color: red;">NOTICE:</span> Please complete the steps to make your account verified add an family member to complete your registration</p>

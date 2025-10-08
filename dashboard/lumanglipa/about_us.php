@@ -95,7 +95,7 @@ $_SESSION["is_approved_$barangay"] = $is_approved;
         /* HOMEPAGE */
         .thumbnail {
             background-color: #ffffff;
-            border: 2px solid #1a49cb;
+            border: 2px solid #B6771D;
             border-radius: 10px;
             padding: 50px;
             transition: all 0.3s ease;
@@ -161,7 +161,7 @@ $_SESSION["is_approved_$barangay"] = $is_approved;
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card" style="border-radius: 12px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);">
                         <div class="body">
-                            <h4 class="text-center" style="font-weight: 900; color: #1a49cb;">About Us</h4>
+                            <h4 class="text-center" style="font-weight: 900; color: #B6771D;">About Us</h4>
                             <hr>
                             <p style="text-align: justify; font-size: 15px;">
                                 <strong>iBayan</strong> is a community-centered digital platform developed to streamline local government services and improve public accessibility to barangay transactions. The system aims to simplify the request and issuance of documents, support barangay operations, and enhance transparency and accountability in governance.
@@ -175,7 +175,7 @@ $_SESSION["is_approved_$barangay"] = $is_approved;
                                 With iBayan, we embrace the values of service, inclusivity, and technology — delivering a modern approach to traditional governance that brings government services closer to every Filipino household.
                             </p>
                             <div class="text-right" style="margin-top: 20px;">
-                                <a href="mission_vision.php" class="btn bg-teal waves-effect" style="background-color: #1a49cb; border-radius: 6px;">Next</a>
+                                <a href="mission_vision.php" class="btn bg-teal waves-effect" style="background-color: #B6771D; border-radius: 6px;">Next</a>
                             </div>
 
                         </div>

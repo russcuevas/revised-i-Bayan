@@ -191,9 +191,9 @@ $barangays = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <div class="row">
                             <!-- Registrant Profile  -->
                             <div class="col-md-4 mb-3">
-                                <div class="card card-primary" style="border-top-width: 5px; border-color: #0036C5;">
+                                <div class="card card-primary" style="border-top-width: 5px; border-color: #B6771D;">
                                     <div class="card-body">
-                                        <h6 class="card-title bold text-primary mb-3" style="color: #0036C5 !important; font-weight: 900;">
+                                        <h6 class="card-title bold text-primary mb-3" style="color: #B6771D !important; font-weight: 900;">
                                             <i class="fas fa-id-card-alt"></i> REGISTRANT PROFILE
                                         </h6>
                                         <div class="mb-3 field-sysuser-sys_firstname required">
@@ -329,9 +329,9 @@ $barangays = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                             <!-- Account Details -->
                             <div class="col-md-4 mb-3">
-                                <div class="card card-primary" style="border-top-width: 5px; border-color: #0036C5;">
+                                <div class="card card-primary" style="border-top-width: 5px; border-color: #B6771D;">
                                     <div class="card-body">
-                                        <h6 class="card-title bold text-primary mb-3" style="color: #0036C5 !important; font-weight: 900;">
+                                        <h6 class="card-title bold text-primary mb-3" style="color: #B6771D !important; font-weight: 900;">
                                             <i class="fas fa-user-cog"></i> ACCOUNT DETAILS
                                         </h6>
                                         <div class="mb-3 field-sysuser-sys_username required">
@@ -373,9 +373,9 @@ $barangays = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                             <!-- Terms and conditions  -->
                             <div class="col-md-4 mb-3">
-                                <div class="card card-primary" style="border-top-width: 5px; border-color: #0036C5;">
+                                <div class="card card-primary" style="border-top-width: 5px; border-color: #B6771D;">
                                     <div class="card-body">
-                                        <h6 class="card-title text-primary bold mb-3" style="color: #0036C5 !important; font-weight: 900;">
+                                        <h6 class="card-title text-primary bold mb-3" style="color: #B6771D !important; font-weight: 900;">
                                             <i class="fas fa-user-check"></i> TERMS AND CONDITIONS
                                         </h6>
                                         <strong>Registration</strong>

@@ -127,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         /* HOMEPAGE */
         .thumbnail {
             background-color: #ffffff;
-            border: 2px solid #1a49cb;
+            border: 2px solid #B6771D;
             border-radius: 10px;
             padding: 50px;
             transition: all 0.3s ease;
@@ -191,7 +191,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="body">
-                            <h4 class="text-center" style="font-weight: 900; color: #1a49cb;">Update Profile</h4>
+                            <h4 class="text-center" style="font-weight: 900; color: #B6771D;">Update Profile</h4>
                             <form id="form_validation" method="POST" action="">
                                 <!-- First Name -->
                                 <div class="form-group form-float mt-3">

@@ -199,7 +199,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         /* HOMEPAGE */
         .thumbnail {
             background-color: #ffffff;
-            border: 2px solid #1a49cb;
+            border: 2px solid #B6771D;
             border-radius: 10px;
             padding: 50px;
             transition: all 0.3s ease;
@@ -208,7 +208,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         .thumbnail:hover {
-            background-color: #1a49cb;
+            background-color: #B6771D;
             color: #ffffff;
             transform: scale(1.05);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
@@ -300,7 +300,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <!-- Left Column -->
                                     <div class="col-md-6 pr-4">
                                         <!-- Request Information -->
-                                        <h4 class="bold span-or" style="font-weight: 900; color: #1a49cb; margin-bottom: 0px !important;">
+                                        <h4 class="bold span-or" style="font-weight: 900; color: #B6771D; margin-bottom: 0px !important;">
                                             Request Information
                                         </h4><br>
 
@@ -321,7 +321,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         </div>
 
                                         <!-- Business Information -->
-                                        <h4 class="bold span-or" style="font-weight: 900; color: #1a49cb;">
+                                        <h4 class="bold span-or" style="font-weight: 900; color: #B6771D;">
                                             Business Information
                                         </h4>
 
@@ -387,7 +387,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <div class="col-md-6 pl-4">
 
                                         <!-- Requirements -->
-                                        <h4 class="bold span-or mb-4" style="font-weight: 900; color: #1a49cb;">
+                                        <h4 class="bold span-or mb-4" style="font-weight: 900; color: #B6771D;">
                                             Requirements
                                         </h4><br>
 
@@ -414,7 +414,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         </div>
 
                                         <!-- Pickup Info -->
-                                        <h5 class="bold span-or mt-4" style="font-weight: 900; color: #1a49cb;">
+                                        <h5 class="bold span-or mt-4" style="font-weight: 900; color: #B6771D;">
                                             Pickup by: (leave blank if you will pick it up)
                                         </h5><br>
 

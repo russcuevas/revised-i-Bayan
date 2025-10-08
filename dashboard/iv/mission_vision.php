@@ -108,7 +108,7 @@ $officials = $stmt->fetchAll(PDO::FETCH_ASSOC);
         /* HOMEPAGE */
         .thumbnail {
             background-color: #ffffff;
-            border: 2px solid #1a49cb;
+            border: 2px solid #B6771D;
             border-radius: 10px;
             padding: 50px;
             transition: all 0.3s ease;
@@ -172,14 +172,14 @@ $officials = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="body">
                     <div class="row">
                         <div class="col-md-6">
-                            <h4 class="text-center" style="font-weight: 900; color: #1a49cb;">Mission</h4>
+                            <h4 class="text-center" style="font-weight: 900; color: #B6771D;">Mission</h4>
                             <p style="text-align: center; font-size: 15px;">
                                 <?php echo htmlspecialchars($mission); ?>
                             </p>
                         </div>
 
                         <div class="col-md-6">
-                            <h4 class="text-center" style="font-weight: 900; color: #1a49cb;">Vision</h4>
+                            <h4 class="text-center" style="font-weight: 900; color: #B6771D;">Vision</h4>
                             <p style="text-align: center; font-size: 15px;">
                                 <?php echo htmlspecialchars($vision); ?>
                             </p>
@@ -187,7 +187,7 @@ $officials = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     </div>
 
-                    <h4 class="text-center" style="font-weight: 900; color: #1a49cb;">Barangay Officials Year (<?= date('Y') ?>)</h4>
+                    <h4 class="text-center" style="font-weight: 900; color: #B6771D;">Barangay Officials Year (<?= date('Y') ?>)</h4>
                     <div class="row text-center" style="margin-top: 30px;">
                         <?php if ($officials): ?>
                             <?php foreach ($officials as $official): ?>
@@ -207,7 +207,7 @@ $officials = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
 
             <!-- Footer -->
-            <footer style="background-color: #f5f5f5; padding: 30px 0; margin-top: 50px; border-top: 2px solid #1a49cb;">
+            <footer style="background-color: #f5f5f5; padding: 30px 0; margin-top: 50px; border-top: 2px solid #B6771D;">
                 <div class="container text-center">
                     <h1>System Developer</h1> <br>
                     <div class="row">

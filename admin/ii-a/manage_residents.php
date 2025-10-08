@@ -118,7 +118,7 @@ $family_members = $family_stmt->fetchAll(PDO::FETCH_ASSOC);;
         /* HOMEPAGE */
         .thumbnail {
             background-color: #ffffff;
-            border: 2px solid #1a49cb;
+            border: 2px solid #B6771D;
             border-radius: 10px;
             padding: 50px;
             transition: all 0.3s ease;
@@ -127,7 +127,7 @@ $family_members = $family_stmt->fetchAll(PDO::FETCH_ASSOC);;
         }
 
         .thumbnail:hover {
-            background-color: #1a49cb;
+            background-color: #B6771D;
             color: #ffffff;
             transform: scale(1.05);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);

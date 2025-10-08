@@ -94,7 +94,7 @@ $total_announcement = $announcement_data['total_announcement'];
         /* HOMEPAGE */
         .thumbnail {
             background-color: #ffffff;
-            border: 2px solid #1a49cb;
+            border: 2px solid #B6771D;
             border-radius: 10px;
             padding: 50px;
             transition: all 0.3s ease;
@@ -103,7 +103,7 @@ $total_announcement = $announcement_data['total_announcement'];
         }
 
         .thumbnail:hover {
-            background-color: #1a49cb;
+            background-color: #B6771D;
             color: #ffffff;
             transform: scale(1.05);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
@@ -122,8 +122,8 @@ $total_announcement = $announcement_data['total_announcement'];
         /* Toast */
         .toast-success {
             background-color: #ffffff !important;
-            color: #1a49cb !important;
-            border-left: 5px solid #1a49cb;
+            color: #B6771D !important;
+            border-left: 5px solid #B6771D;
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
         }
@@ -133,7 +133,7 @@ $total_announcement = $announcement_data['total_announcement'];
             font-family: "Font Awesome 6 Free";
             font-weight: 900;
             margin-right: 10px;
-            color: #1a49cb;
+            color: #B6771D;
         }
 
 
@@ -200,7 +200,7 @@ $total_announcement = $announcement_data['total_announcement'];
     <section class="content">
         <div class="container-fluid">
             <div class="block-header text-left">
-                <h3 style="color: #1a49cb;">Dashboard</h3>
+                <h3 style="color: #B6771D;">Dashboard</h3>
             </div>
             <div class="row clearfix">
                 <div class="col-sm-6 col-md-3 col-lg-4" onclick="window.location.href = 'barangay_management.php'">
@@ -233,14 +233,14 @@ $total_announcement = $announcement_data['total_announcement'];
             <!-- #END# Widgets -->
 
             <div class="block-header text-left">
-                <h3 style="color: #1a49cb;">Analytics</h3>
+                <h3 style="color: #B6771D;">Analytics</h3>
             </div>
 
             <!-- GRAPHS SHOWING  -->
             <div class="row clearfix">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="card">
-                        <div class="header" style="background-color: #1a49cb;">
+                        <div class="header" style="background-color: #B6771D;">
                             <h2 style="color: white !important">TOTAL RESIDENTS (ALL BARANGAY)</h2>
                         </div>
                         <div class="col-md-6">
@@ -258,7 +258,7 @@ $total_announcement = $announcement_data['total_announcement'];
                             </div>
                         </div>
                         <div class="body">
-                            <canvas style="border-color:#1a49cb;" id="line_chart" height="150"></canvas>
+                            <canvas style="border-color:#B6771D;" id="line_chart" height="150"></canvas>
                         </div>
                     </div>
                 </div>
@@ -266,7 +266,7 @@ $total_announcement = $announcement_data['total_announcement'];
                 <!-- Bar Chart -->
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="card">
-                        <div class="header" style="background-color: #1a49cb;">
+                        <div class="header" style="background-color: #B6771D;">
                             <h2 style="color: white !important">TOTAL CERTIFICATE FEES (ALL BARANGAY)</h2>
                         </div>
                         <div class="col-md-6">
@@ -366,7 +366,7 @@ $total_announcement = $announcement_data['total_announcement'];
                         datasets: [{
                             label: `Total Certificate Fees (${year})`,
                             data: data,
-                            backgroundColor: '#1a49cb'
+                            backgroundColor: '#B6771D'
                         }]
                     },
                     options: {
@@ -437,7 +437,7 @@ $total_announcement = $announcement_data['total_announcement'];
                         datasets: [{
                             label: `Total Residents (${year})`,
                             data: data,
-                            borderColor: '#1a49cb',
+                            borderColor: '#B6771D',
                             backgroundColor: 'rgba(0, 61, 245, 0.71)',
                             pointBorderColor: 'rgba(0, 188, 212, 0)',
                             pointBackgroundColor: 'black',

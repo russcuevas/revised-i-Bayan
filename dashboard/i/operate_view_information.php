@@ -111,7 +111,7 @@ if (!$operate) {
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card shadow" style="border-radius: 12px;">
                         <div class="body p-4">
-                            <h4 class="text-left mb-4" style="font-weight: 800; color: #1a49cb;">Operate Details - <span class="badge bg-blue"><?= ucfirst($operate['status'] ?? 'Pending') ?></span></h4>
+                            <h4 class="text-left mb-4" style="font-weight: 800; color: #B6771D;">Operate Details - <span class="badge bg-blue"><?= ucfirst($operate['status'] ?? 'Pending') ?></span></h4>
 
                             <div class="row">
                                 <div class="col-md-6 mb-3"><strong>Document Number:</strong><br><?= htmlspecialchars($operate['document_number']) ?></div>
@@ -145,7 +145,7 @@ if (!$operate) {
                             </div>
 
                             <hr>
-                            <h5 style="color: #1a49cb;">Uploaded Documents</h5>
+                            <h5 style="color: #B6771D;">Uploaded Documents</h5>
                             <div class="row">
                                 <div class="col-md-6 mb-2">
                                     <span class="label-title">Valid ID:</span><br>

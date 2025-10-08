@@ -9,7 +9,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <!-- <li class="nav-item dropdown" style="margin-right: 10px;">
-                    <a style="color: #1a49cb;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                    <a style="color: #B6771D;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         REGISTER FAMILY MEMBERS
                     </a>
@@ -18,12 +18,12 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a style="color: #1a49cb; font-weight: bold;" class="dropdown-item" href="register_fm.php">Make Request</a></li>
-                        <li><a style="color: #1a49cb; font-weight: bold;" class="dropdown-item" href="status_fm.php">View Request</a></li>
+                        <li><a style="color: #B6771D; font-weight: bold;" class="dropdown-item" href="register_fm.php">Make Request</a></li>
+                        <li><a style="color: #B6771D; font-weight: bold;" class="dropdown-item" href="status_fm.php">View Request</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown" style="margin-right: 10px;">
-                    <a style="color: #1a49cb;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                    <a style="color: #B6771D;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         REQUEST DOCUMENTS
                     </a>
@@ -32,28 +32,28 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a style="color: #1a49cb; font-weight: bold;" class="dropdown-item" href="#">Barangay Clearance</a></li>
-                        <li><a style="color: #1a49cb; font-weight: bold;" class="dropdown-item" href="#">Barangay Indigency</a></li>
+                        <li><a style="color: #B6771D; font-weight: bold;" class="dropdown-item" href="#">Barangay Clearance</a></li>
+                        <li><a style="color: #B6771D; font-weight: bold;" class="dropdown-item" href="#">Barangay Indigency</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown" style="margin-right: 10px;">
-                    <a class="nav-link active" href="chatlinks.php" style="color: #1a49cb;">BARANGAY CHATLINKS</a>
+                    <a class="nav-link active" href="chatlinks.php" style="color: #B6771D;">BARANGAY CHATLINKS</a>
                 </li>
                 <li class="nav-item dropdown" style="margin-right: 10px;">
-                    <a class="nav-link active" href="announcement.php" style="color: #1a49cb;">BARANGAY ANNOUNCEMENTS</a>
+                    <a class="nav-link active" href="announcement.php" style="color: #B6771D;">BARANGAY ANNOUNCEMENTS</a>
                 </li> -->
                 <li class="nav-item dropdown" style="margin-right: 10px;">
-                    <a class="nav-link active" href="home.php" style="color: #1a49cb;">HOME</a>
+                    <a class="nav-link active" href="home.php" style="color: #B6771D;">HOME</a>
                 </li>
                 <li class="nav-item dropdown" style="margin-right: 10px;">
-                    <a class="nav-link" href="login.php" style="color: #1a49cb;">LOGIN</a>
+                    <a class="nav-link" href="login.php" style="color: #B6771D;">LOGIN</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
 
-<div class="container-fluid p-4" style="background-color: #1a49cb;">
+<div class="container-fluid p-4" style="background-color: #B6771D;">
     <div class="row">
         <div class="d-flex align-items-center text-white">
             <div class="flex-shrink-0 ms-3">

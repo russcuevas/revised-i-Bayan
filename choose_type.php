@@ -25,7 +25,7 @@
 
         .bordered-section {
             position: relative;
-            border: 5px solid #1a49cb;
+            border: 5px solid #B6771D;
             padding: 60px 20px 40px 20px;
             border-radius: 15px;
             margin-top: 40px;
@@ -37,7 +37,7 @@
             left: 50%;
             transform: translateX(-50%);
             background-color: white;
-            border: 5px solid #1a49cb;
+            border: 5px solid #B6771D;
             border-radius: 50%;
             width: 80px;
             height: 80px;
@@ -64,7 +64,7 @@
         .card-hover:hover {
             transform: scale(1.05);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-            border-color: #1a49cb;
+            border-color: #B6771D;
         }
     </style>
 </head>
@@ -74,7 +74,7 @@
     <?php include 'components/navbar.php' ?>
 
     <div class="container px-4 py-5" id="featured-3">
-        <h2 class="pb-2 mb-3 text-center" style="color: #1a49cb; font-size: 25px; font-weight: 900;">
+        <h2 class="pb-2 mb-3 text-center" style="color: #B6771D; font-size: 25px; font-weight: 900;">
             Resident System for Mataasnakahoy Barangays
         </h2>
         <h5 class="pb-2 mb-5 text-center" style="color: grey;">CHOOSE TYPE</h5>
@@ -88,7 +88,7 @@
                 <div class="col" onclick="window.location.href = 'login.php'">
                     <div class="p-4 card-hover text-center">
                         <div class="mb-3">
-                            <i class="bi bi-person-circle" style="font-size: 4rem; color: #1a49cb;"></i>
+                            <i class="bi bi-person-circle" style="font-size: 4rem; color: #B6771D;"></i>
                         </div>
                         <h5 class="mb-0">Resident</h5>
                     </div>
@@ -97,7 +97,7 @@
                 <div class="col" onclick="window.location.href = 'admin/login.php'">
                     <div class="p-4 card-hover text-center">
                         <div class="mb-3">
-                            <i class="bi bi-person-badge" style="font-size: 4rem; color: #1a49cb;"></i>
+                            <i class="bi bi-person-badge" style="font-size: 4rem; color: #B6771D;"></i>
                         </div>
                         <h5>Brgy. Official</h5>
                     </div>
@@ -106,7 +106,7 @@
                 <div class="col" onclick="window.location.href = 'superadmin/login.php'">
                     <div class="p-4 card-hover text-center">
                         <div class="mb-3">
-                            <i class="bi bi-shield-lock" style="font-size: 4rem; color: #1a49cb;"></i>
+                            <i class="bi bi-shield-lock" style="font-size: 4rem; color: #B6771D;"></i>
                         </div>
                         <h5>Admin</h5>
                     </div>

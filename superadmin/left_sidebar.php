@@ -7,10 +7,10 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <ul class="list">
             <li class="header" style="font-size: 12px">
                 WELCOME <br>
-                <span style="color: #1a49cb; text-transform: uppercase;">
+                <span style="color: #B6771D; text-transform: uppercase;">
                     <?= htmlspecialchars($_SESSION['superadmin_name']) ?>
                 </span> <br>
-                <span style="color: #1a49cb;">MATAASNAKAHOY - SUPERADMIN</span>
+                <span style="color: #B6771D;">MATAASNAKAHOY - SUPERADMIN</span>
             </li>
 
             <li class="<?= $current_page == 'index.php' ? 'active' : '' ?>">

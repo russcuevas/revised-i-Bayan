@@ -219,7 +219,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['status'], $_POST['ope
             <div class="row clearfix" style="width: 100%; max-width: 800px;">
                 <div class="card shadow" style="border-radius: 12px;">
                     <div class="body p-4">
-                        <h4 class="text-left mb-4" style="font-weight: 800; color: #1a49cb;">
+                        <h4 class="text-left mb-4" style="font-weight: 800; color: #B6771D;">
                             Operate Details -
                             <span class="badge bg-blue"><?= ucfirst($operate['status'] ?? 'Pending') ?></span>
                         </h4>
@@ -257,7 +257,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['status'], $_POST['ope
 
                         <hr class="my-4">
 
-                        <h5 class="mb-3" style="color: #1a49cb;"><strong>Uploaded Documents</strong></h5>
+                        <h5 class="mb-3" style="color: #B6771D;"><strong>Uploaded Documents</strong></h5>
                         <div class="row">
                             <div class="col-md-6 mb-2">
                                 <strong>Valid ID:</strong><br>

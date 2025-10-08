@@ -134,7 +134,7 @@ hr {
 }
 
 .bubble-outgoing {
-    background-color: #1a49cb;
+    background-color: #B6771D;
     color: white;
 }
 
@@ -154,7 +154,7 @@ hr {
 
 /* BREADCRUMBS */
 .list-group-item.active {
-    background-color: #1a49cb;
+    background-color: #B6771D;
 }
 
 .breadcrumb-arrow {

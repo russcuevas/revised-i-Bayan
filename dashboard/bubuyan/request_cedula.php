@@ -198,7 +198,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         /* HOMEPAGE */
         .thumbnail {
             background-color: #ffffff;
-            border: 2px solid #1a49cb;
+            border: 2px solid #B6771D;
             border-radius: 10px;
             padding: 50px;
             transition: all 0.3s ease;
@@ -207,7 +207,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         .thumbnail:hover {
-            background-color: #1a49cb;
+            background-color: #B6771D;
             color: #ffffff;
             transform: scale(1.05);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
@@ -299,7 +299,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <!-- Left Column: Request Info + Personal Info -->
                                     <div class="col-md-6 pr-4">
                                         <!-- Request Information -->
-                                        <h4 class="bold span-or" style="font-weight: 900; color: #1a49cb;">Request Information</h4>
+                                        <h4 class="bold span-or" style="font-weight: 900; color: #B6771D;">Request Information</h4>
                                         <br>
 
                                         <div class="form-group form-float mt-3">
@@ -318,7 +318,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         </div>
 
                                         <!-- Personal Information -->
-                                        <h4 class="bold span-or mt-4" style="font-weight: 900; color: #1a49cb;">Personal Information</h4>
+                                        <h4 class="bold span-or mt-4" style="font-weight: 900; color: #B6771D;">Personal Information</h4>
 
                                         <div class="form-group form-float mt-3" style="margin-top: 30px">
                                             <div class="form-line">
@@ -383,7 +383,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <!-- Right Column: Requirements + Payment + Pickup -->
                                     <div class="col-md-6 pl-4">
                                         <!-- Requirements -->
-                                        <h4 class="bold span-or mb-4" style="font-weight: 900; color: #1a49cb;">Requirements</h4>
+                                        <h4 class="bold span-or mb-4" style="font-weight: 900; color: #B6771D;">Requirements</h4>
                                         <br>
 
                                         <div class="form-group form-float">
@@ -409,7 +409,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         </div>
 
                                         <!-- Payment Info -->
-                                        <h5 class="bold span-or mt-4" style="font-weight: 900; color: #1a49cb;">Payment Information</h5>
+                                        <h5 class="bold span-or mt-4" style="font-weight: 900; color: #B6771D;">Payment Information</h5>
 
                                         <div class="form-group form-float mt-3" style="margin-top: 20px;">
                                             <div class="form-line">
@@ -447,7 +447,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         </div>
 
                                         <!-- Pickup By -->
-                                        <h5 class="bold span-or mt-4" style="font-weight: 900; color: #1a49cb;"> Pickup by: (leave blank if you will pick it up)
+                                        <h5 class="bold span-or mt-4" style="font-weight: 900; color: #B6771D;"> Pickup by: (leave blank if you will pick it up)
                                         </h5>
 
                                         <div class="form-group form-float mt-3" style="margin-top: 20px;">

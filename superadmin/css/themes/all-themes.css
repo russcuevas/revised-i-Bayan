@@ -583,7 +583,7 @@
 }
 
 .theme-teal .navbar {
-  background-color: #1a49cb;
+  background-color: #B6771D;
 }
 
 .theme-teal .navbar-brand {
@@ -636,7 +636,7 @@
 
 .theme-teal .sidebar .menu .list li.active> :first-child i,
 .theme-teal .sidebar .menu .list li.active> :first-child span {
-  color: #1a49cb;
+  color: #B6771D;
 }
 
 .theme-teal .sidebar .menu .list .toggled {
@@ -652,7 +652,7 @@
 }
 
 .theme-teal .sidebar .legal .copyright a {
-  color: #1a49cb !important;
+  color: #B6771D !important;
 }
 
 .theme-green .navbar {
@@ -1386,7 +1386,7 @@
 }
 
 .theme-black .navbar {
-  background-color: #1a49cb;
+  background-color: #B6771D;
 }
 
 .theme-black .navbar-brand {
@@ -1439,7 +1439,7 @@
 
 .theme-black .sidebar .menu .list li.active> :first-child i,
 .theme-black .sidebar .menu .list li.active> :first-child span {
-  color: #1a49cb;
+  color: #B6771D;
 }
 
 .theme-black .sidebar .menu .list .toggled {
@@ -1455,5 +1455,5 @@
 }
 
 .theme-black .sidebar .legal .copyright a {
-  color: #1a49cb !important;
+  color: #B6771D !important;
 }

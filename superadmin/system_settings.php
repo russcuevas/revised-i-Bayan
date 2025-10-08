@@ -74,7 +74,7 @@ include '../database/connection.php';
         /* HOMEPAGE */
         .thumbnail {
             background-color: #ffffff;
-            border: 2px solid #1a49cb;
+            border: 2px solid #B6771D;
             border-radius: 10px;
             padding: 50px;
             transition: all 0.3s ease;
@@ -83,7 +83,7 @@ include '../database/connection.php';
         }
 
         .thumbnail:hover {
-            background-color: #1a49cb;
+            background-color: #B6771D;
             color: #ffffff;
             transform: scale(1.05);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
@@ -153,7 +153,7 @@ include '../database/connection.php';
     <section class="content">
         <div class="container-fluid">
             <div class="block-header text-center" style="margin-bottom: 50px !important;">
-                <h3 style="color: #1a49cb;">System Settings</h3>
+                <h3 style="color: #B6771D;">System Settings</h3>
             </div>
             <!-- Widgets -->
             <div class="container">

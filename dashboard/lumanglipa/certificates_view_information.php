@@ -107,7 +107,7 @@ if (!$certificate) {
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card shadow" style="border-radius: 12px;">
                         <div class="body p-4">
-                            <h4 class="text-left mb-4" style="font-weight: 800; color: #1a49cb;">Certificate Details - <span class="badge bg-blue"><?= ucfirst($certificate['status'] ?? 'Pending') ?></span></h4>
+                            <h4 class="text-left mb-4" style="font-weight: 800; color: #B6771D;">Certificate Details - <span class="badge bg-blue"><?= ucfirst($certificate['status'] ?? 'Pending') ?></span></h4>
 
                             <div class="row">
                                 <div class="col-md-6 mb-3"><strong>Full Name:</strong><br><?= htmlspecialchars($certificate['fullname']) ?></div>

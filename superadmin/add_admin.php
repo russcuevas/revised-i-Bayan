@@ -134,7 +134,7 @@ $barangays = $stmt->fetchAll(PDO::FETCH_ASSOC);
         /* HOMEPAGE */
         .thumbnail {
             background-color: #ffffff;
-            border: 2px solid #1a49cb;
+            border: 2px solid #B6771D;
             border-radius: 10px;
             padding: 50px;
             transition: all 0.3s ease;
@@ -143,7 +143,7 @@ $barangays = $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
         .thumbnail:hover {
-            background-color: #1a49cb;
+            background-color: #B6771D;
             color: #ffffff;
             transform: scale(1.05);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
@@ -235,7 +235,7 @@ $barangays = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <!-- Left Column: Request Info and Personal Info -->
                                     <div class="col-md-6 pr-4">
                                         <!-- Personal Information -->
-                                        <h4 class="bold span-or" style="font-weight: 900; color: #1a49cb;">Personal Information</h4>
+                                        <h4 class="bold span-or" style="font-weight: 900; color: #B6771D;">Personal Information</h4>
 
                                         <div class="row">
                                             <div class="col-lg-6">
@@ -297,7 +297,7 @@ $barangays = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                                     <!-- Right Column: Requirements and Pickup Info -->
                                     <div class="col-md-6 pl-4">
-                                        <h4 class="bold span-or mb-4" style="font-weight: 900; color: #1a49cb;">Account Details</h4>
+                                        <h4 class="bold span-or mb-4" style="font-weight: 900; color: #B6771D;">Account Details</h4>
                                         <div class="form-group form-float" style="margin-top: 30px;">
                                             <div class="form-line">
                                                 <input type="text" class="form-control" name="username" id="username" required>

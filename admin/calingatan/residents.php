@@ -99,7 +99,7 @@ $family_members = $family_stmt->fetchAll(PDO::FETCH_ASSOC);
         /* HOMEPAGE */
         .thumbnail {
             background-color: #ffffff;
-            border: 2px solid #1a49cb;
+            border: 2px solid #B6771D;
             border-radius: 10px;
             padding: 50px;
             transition: all 0.3s ease;
@@ -108,7 +108,7 @@ $family_members = $family_stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
         .thumbnail:hover {
-            background-color: #1a49cb;
+            background-color: #B6771D;
             color: #ffffff;
             transform: scale(1.05);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
@@ -138,8 +138,8 @@ $family_members = $family_stmt->fetchAll(PDO::FETCH_ASSOC);
             align-items: center;
             gap: 6px;
             background-color: #ffffff;
-            border: 2px solid #1a49cb;
-            color: #1a49cb;
+            border: 2px solid #B6771D;
+            color: #B6771D;
             padding: 8px 15px;
             font-size: 14px;
             font-weight: 600;
@@ -149,16 +149,16 @@ $family_members = $family_stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
         .report-tags li a:hover {
-            background-color: #1a49cb;
+            background-color: #B6771D;
             color: #ffffff;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
             transform: translateY(-2px);
         }
 
         .report-tags li a.active {
-            background-color: #1a49cb;
+            background-color: #B6771D;
             color: #ffffff;
-            border-color: #1a49cb;
+            border-color: #B6771D;
             box-shadow: 0 4px 12px rgba(26, 73, 203, 0.3);
             transform: translateY(-1px);
         }
@@ -226,7 +226,7 @@ $family_members = $family_stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
             <!-- Basic Validation -->
             <div class="block-header text-left">
-                <h3 style="color: #1a49cb;">Generate Reports</h3>
+                <h3 style="color: #B6771D;">Generate Reports</h3>
             </div>
             <div class="row clearfix">
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
