@@ -74,13 +74,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
             <div class="form-group position-relative mb-3 text-start">
-                <input type="password" class="form-control rounded-pill px-4" name="password" style="font-weight: 900" id="password" placeholder="Password" required>
-                <div class="invalid-feedback ms-2">
-                    Please enter your password.
-                </div>
+                <input type="password" class="form-control rounded-pill px-4" style="font-weight: 900" id="password" name="password" placeholder="Password" required>
+                <i class="bi bi-eye-slash position-absolute" id="togglePassword"
+                    style="top: 50%; right: 10px; transform: translateY(-50%); cursor: pointer;"></i>
+                <div class="invalid-feedback">Please enter your password.</div>
             </div>
             <button class="btn btn-primary w-100 rounded-pill mt-3 mb-3" style="font-weight: 900;" name="" type="submit">Login ➜</button>
-            <a href="../choose_type.php" class="btn btn-secondary w-100 rounded-pill mb-3" style="font-weight: 900;">Go back</a>
+            <a href="../home.php" class="btn btn-secondary w-100 rounded-pill mb-3" style="font-weight: 900;">Go back</a>
 
         </form>
     </div>
@@ -125,6 +125,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </script>
 
 
+    <script>
+        const togglePassword = document.querySelector("#togglePassword");
+        const password = document.querySelector("#password");
+
+        togglePassword.addEventListener("click", function () {
+            const type = password.getAttribute("type") === "password" ? "text" : "password";
+            password.setAttribute("type", type);
+            this.classList.toggle("bi-eye");
+            this.classList.toggle("bi-eye-slash");
+        });
+    </script>
 
 </body>
 

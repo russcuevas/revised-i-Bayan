@@ -102,6 +102,7 @@ $barangays = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <!-- Select -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 
     <link href="css/themes/all-themes.css" rel="stylesheet" />
     <style>
@@ -306,12 +307,16 @@ $barangays = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         </div>
 
 
-                                        <div class="form-group form-float" style="margin-top: 30px;">
-                                            <div class="form-line">
-                                                <input type="password" class="form-control" name="password" required>
-                                                <label class="form-label">Password <span style="color: red;">*</span></label>
-                                            </div>
-                                        </div>
+<div class="form-group form-float position-relative" style="margin-top: 30px;">
+    <div class="form-line position-relative">
+        <input type="password" class="form-control pe-5" id="passwordField" name="password" required>
+        <label class="form-label">Password <span style="color: red;">*</span></label>
+
+        <!-- 👁️ Toggle Icon -->
+        <i class="bi bi-eye-slash" id="togglePasswordField"
+           style="position: absolute; top: 50%; right: 15px; transform: translateY(-50%); cursor: pointer;"></i>
+    </div>
+</div>
                                     </div>
                                 </div>
 
@@ -434,7 +439,19 @@ $barangays = $stmt->fetchAll(PDO::FETCH_ASSOC);
         });
     </script>
 
+<script>
+  const togglePasswordField = document.getElementById("togglePasswordField");
+  const passwordField = document.getElementById("passwordField");
 
+  togglePasswordField.addEventListener("click", function () {
+    const type = passwordField.getAttribute("type") === "password" ? "text" : "password";
+    passwordField.setAttribute("type", type);
+
+    // Toggle the eye / eye-slash icons
+    this.classList.toggle("bi-eye");
+    this.classList.toggle("bi-eye-slash");
+  });
+</script>
 </body>
 
 </html>

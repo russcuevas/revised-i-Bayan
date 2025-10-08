@@ -92,6 +92,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="css/themes/all-themes.css" rel="stylesheet" />
     <!-- Sweetalert Css -->
     <link href="plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
@@ -222,12 +224,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     </div>
                                 </div>
 
-                                <div class="form-group form-float mt-3" style="margin-top: 30px">
-                                    <div class="form-line">
-                                        <input type="password" class="form-control" name="password" placeholder="Leave blank to keep current password">
-                                        <label class="form-label">Password</label>
-                                    </div>
-                                </div>
+<div class="form-group form-float mt-3 position-relative" style="margin-top: 30px;">
+    <div class="form-line position-relative">
+        <input type="password" class="form-control pe-5" id="updatePasswordField" name="password"
+               placeholder="Leave blank to keep current password">
+        <label class="form-label">Password</label>
+
+        <!-- 👁️ Toggle Icon -->
+        <i class="bi bi-eye-slash" id="toggleUpdatePasswordField"
+           style="position: absolute; top: 50%; right: 15px; transform: translateY(-50%); cursor: pointer;"></i>
+    </div>
+</div>
 
                                 <div style="display: flex; justify-content: flex-end; gap: 10px;">
                                     <button type="submit" class="btn bg-teal waves-effect">Submit</button>
@@ -305,7 +312,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php endif; ?>
     </script>
 
+<script>
+  const toggleUpdatePasswordField = document.getElementById("toggleUpdatePasswordField");
+  const updatePasswordField = document.getElementById("updatePasswordField");
 
+  toggleUpdatePasswordField.addEventListener("click", function () {
+    const type = updatePasswordField.getAttribute("type") === "password" ? "text" : "password";
+    updatePasswordField.setAttribute("type", type);
+
+    // Toggle between eye and eye-slash icons
+    this.classList.toggle("bi-eye");
+    this.classList.toggle("bi-eye-slash");
+  });
+</script>
 </body>
 
 </html>

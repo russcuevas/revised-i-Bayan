@@ -128,6 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <!-- Select -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 
     <link href="css/themes/all-themes.css" rel="stylesheet" />
     <style>
@@ -327,12 +328,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                                 <label class="form-label">Username <span style="color: red;">*</span></label>
                                             </div>
                                         </div>
-                                        <div class="form-group form-float" style="margin-top: 30px;">
-                                            <div class="form-line">
-                                                <input type="password" class="form-control" name="password">
-                                                <label class="form-label">Password <small>(leave blank to keep current)</small></label>
-                                            </div>
-                                        </div>
+<div class="form-group form-float position-relative" style="margin-top: 30px;">
+    <div class="form-line position-relative">
+        <input type="password" class="form-control pe-5" id="editPasswordField" name="password">
+        <label class="form-label">
+            Password <small>(leave blank to keep current)</small>
+        </label>
+
+        <!-- 👁️ Toggle Icon -->
+        <i class="bi bi-eye-slash" id="toggleEditPasswordField"
+           style="position: absolute; top: 50%; right: 15px; transform: translateY(-50%); cursor: pointer;"></i>
+    </div>
+</div>
                                     </div>
                                 </div>
                                 <!-- Buttons -->
@@ -457,6 +464,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         });
     </script>
 
+    <script>
+    const toggleEditPasswordField = document.getElementById("toggleEditPasswordField");
+    const editPasswordField = document.getElementById("editPasswordField");
+
+    toggleEditPasswordField.addEventListener("click", function () {
+        const type = editPasswordField.getAttribute("type") === "password" ? "text" : "password";
+        editPasswordField.setAttribute("type", type);
+
+        // Toggle between eye and eye-slash icons
+        this.classList.toggle("bi-eye");
+        this.classList.toggle("bi-eye-slash");
+    });
+    </script>
 
 </body>
 

@@ -341,13 +341,15 @@ $barangays = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                                             <div class="invalid-feedback"></div>
                                         </div>
-                                        <div class="mb-3 field-sysuser-sys_password required">
+<div class="mb-3 field-sysuser-sys_password required">
+    <div class="input-group position-relative">
+        <input type="password" id="sysuser-sys_password" style="font-weight: 900" class="form-control" name="password" maxlength="500" placeholder="Password" required>
+        <i class="bi bi-eye-slash position-absolute" id="togglePassword"
+           style="top: 50%; right: 10px; transform: translateY(-50%); cursor: pointer;"></i>
+        <div class="invalid-feedback"></div>
+    </div>
+</div>
 
-                                            <div class="input-group">
-                                                <input type="password" id="sysuser-sys_password" style="font-weight: 900" class="form-control" name="password" maxlength="500" placeholder="Password" required>
-                                                <div class="invalid-feedback"></div>
-                                            </div>
-                                        </div>
 
                                         <div class="mb-3 field-sysuser-sys_email_address required">
                                             <label class="form-label" for="sysuser-sys_email_address">Email Address <span style="color: red;">*</span></label>
@@ -587,6 +589,19 @@ $barangays = $stmt->fetchAll(PDO::FETCH_ASSOC);
             });
         });
     </script>
+
+    <script>
+        const togglePassword = document.querySelector('#togglePassword');
+        const passwordInput = document.querySelector('#sysuser-sys_password');
+
+        togglePassword.addEventListener('click', function () {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.classList.toggle('bi-eye');
+            this.classList.toggle('bi-eye-slash');
+        });
+    </script>
+
 
 </body>
 
