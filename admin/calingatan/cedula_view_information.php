@@ -373,6 +373,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['status'], $_POST['ced
             </div>
         </div>
         </div>
+        <?php include('footer.php')?>    
+
     </section>
 
 
@@ -404,6 +406,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['status'], $_POST['ced
         <?php endif; ?>
     </script>
     <script src="../js/admin.js"></script>
+    <script>
+    let chatLoaded = false;
+
+    $('#openChatBtn').on('click', function() {
+    $('#chatPopup').modal('show');
+
+    if (!chatLoaded) {
+        $('#chatContent').html(`
+        <iframe src="live_chat.php" 
+                style="width:100%; height:100%; border:none;"></iframe>
+        `);
+        chatLoaded = true;
+    }
+    });
+    </script>
 </body>
 
 </html>

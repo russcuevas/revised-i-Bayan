@@ -410,6 +410,9 @@ foreach ($family_members as $member) {
                                             <input type="radio" name="is_working" value="2" id="student" style="margin-left: 15px;">
                                             <label for="student">Student</label>
 
+                                            <input type="radio" name="is_working" value="4" id="senior_citizen" style="margin-left: 15px;" checked>
+                                            <label for="senior_citizen">Senior Citizen</label>
+
                                             <input type="radio" name="is_working" value="3" id="none" style="margin-left: 15px;" checked>
                                             <label for="none">None</label>
                                         </div>

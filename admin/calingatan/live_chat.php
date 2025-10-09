@@ -77,11 +77,10 @@ if ($selected_resident_id) {
 <body>
     <div class="container-fluid mt-3">
         <div class="row">
-            <!-- Sidebar: Residents -->
             <div class="col-md-3 border-end">
-                <h5 class="text-left">Residents</h5>
-                <a href="index.php" class="btn btn-primary mb-3">Go back</a>
-                <div class="list-group" id="resident-list">
+                <h5 class="text-left mb-3">Residents</h5>
+                <div class="list-group" id="resident-list" 
+                    style="max-height: 70vh; overflow-y: auto;">
                     <?php foreach ($residents as $res): ?>
                         <?php $unread = $unreadCounts[$res['id']] ?? 0; ?>
                         <a href="?resident_id=<?= $res['id'] ?>"
@@ -92,12 +91,15 @@ if ($selected_resident_id) {
                                 <?php if ($unread > 0): ?>
                                     <span class="badge bg-danger"><?= $unread ?></span>
                                 <?php endif; ?>
-                                <span class="status-dot" style="width: 10px; height: 10px; border-radius: 50%; background-color: gray; display: inline-block;"></span>
+                                <span class="status-dot" 
+                                    style="width: 10px; height: 10px; border-radius: 50%; background-color: gray; display: inline-block;">
+                                </span>
                             </div>
                         </a>
                     <?php endforeach; ?>
                 </div>
             </div>
+
 
             <!-- Chat Area -->
             <div class="col-md-9 d-flex flex-column" style="height: 80vh;">

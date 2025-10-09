@@ -87,8 +87,7 @@ if ($selected_admin_id) {
             <!-- Sidebar -->
             <div class="col-md-3 border-end">
                 <h5 class="text-left">Barangay Admins</h5>
-                <a href="index.php" class="btn btn-primary mb-3">Go back</a>
-                <div class="list-group" id="admin-list">
+                <div class="list-group" id="admin-list" style="max-height: 400px; overflow-y: auto;">
                     <?php foreach ($admin_list as $admin): ?>
                         <a href="?admin_id=<?= $admin['id'] ?>"
                             class="list-group-item list-group-item-action d-flex justify-content-between align-items-center <?= ($selected_admin_id == $admin['id']) ? 'active' : '' ?>"
@@ -99,13 +98,12 @@ if ($selected_admin_id) {
                                     <span class="badge bg-danger rounded-pill"><?= $admin['unread_count'] ?></span>
                                 <?php endif; ?>
                                 <span class="status-dot" style="width:10px; height:10px; border-radius:50%; background-color:gray; display:inline-block;"></span>
-
                             </span>
                         </a>
                     <?php endforeach; ?>
                 </div>
-
             </div>
+
 
             <!-- Chat Area -->
             <div class="col-md-9 d-flex flex-column" style="height: 80vh;">

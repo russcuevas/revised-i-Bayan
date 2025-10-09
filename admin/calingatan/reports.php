@@ -258,6 +258,8 @@ $admin_barangay_id = $admin_stmt->fetchColumn();
             <!-- #END# Basic Validation -->
         </div>
         </div>
+        <?php include('footer.php')?>    
+
     </section>
 
     <!-- Jquery Core Js -->
@@ -317,6 +319,21 @@ $admin_barangay_id = $admin_stmt->fetchColumn();
     <!-- Demo Js -->
     <script src="../js/demo.js"></script>
     <script src="../plugins/sweetalert/sweetalert.min.js"></script>
+    <script>
+    let chatLoaded = false;
+
+    $('#openChatBtn').on('click', function() {
+    $('#chatPopup').modal('show');
+
+    if (!chatLoaded) {
+        $('#chatContent').html(`
+        <iframe src="live_chat.php" 
+                style="width:100%; height:100%; border:none;"></iframe>
+        `);
+        chatLoaded = true;
+    }
+    });
+    </script>
 </body>
 
 </html>

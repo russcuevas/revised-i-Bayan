@@ -98,12 +98,7 @@ $certificate_active = in_array($current_page, $certificate_pages);
                     </ul>
                 </li>
 
-                <li class="<?= $current_page == 'live_chat.php' ? 'active' : '' ?>">
-                    <a href="live_chat.php">
-                        <i class="material-icons">chat</i>
-                        <span>Live Chat</span>
-                    </a>
-                </li>
+
 
                 <li class="<?= $current_page == 'feedback.php' ? 'active' : '' ?>">
                     <a href="feedback.php">

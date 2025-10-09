@@ -267,8 +267,12 @@ $barangays = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                 <input type="radio" name="is_working" value="2" id="student" style="margin-left: 15px;">
                                                 <label for="student">Student</label>
 
+                                                <input type="radio" name="is_working" value="4" id="senior_citizen" style="margin-left: 15px;" checked>
+                                                <label for="senior_citizen">Senior Citizen</label>
+
                                                 <input type="radio" name="is_working" value="3" id="none" style="margin-left: 15px;" checked>
                                                 <label for="none">None</label>
+
                                             </div>
                                         </div>
 
@@ -341,14 +345,14 @@ $barangays = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                                             <div class="invalid-feedback"></div>
                                         </div>
-<div class="mb-3 field-sysuser-sys_password required">
-    <div class="input-group position-relative">
-        <input type="password" id="sysuser-sys_password" style="font-weight: 900" class="form-control" name="password" maxlength="500" placeholder="Password" required>
-        <i class="bi bi-eye-slash position-absolute" id="togglePassword"
-           style="top: 50%; right: 10px; transform: translateY(-50%); cursor: pointer;"></i>
-        <div class="invalid-feedback"></div>
-    </div>
-</div>
+                                        <div class="mb-3 field-sysuser-sys_password required">
+                                            <div class="input-group position-relative">
+                                                <input type="password" id="sysuser-sys_password" style="font-weight: 900" class="form-control" name="password" maxlength="500" placeholder="Password" required>
+                                                <i class="bi bi-eye-slash position-absolute" id="togglePassword"
+                                                style="top: 50%; right: 10px; transform: translateY(-50%); cursor: pointer;"></i>
+                                                <div class="invalid-feedback"></div>
+                                            </div>
+                                        </div>
 
 
                                         <div class="mb-3 field-sysuser-sys_email_address required">

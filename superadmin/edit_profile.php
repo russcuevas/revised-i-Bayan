@@ -312,19 +312,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php endif; ?>
     </script>
 
-<script>
-  const toggleUpdatePasswordField = document.getElementById("toggleUpdatePasswordField");
-  const updatePasswordField = document.getElementById("updatePasswordField");
+    <script>
+    const toggleUpdatePasswordField = document.getElementById("toggleUpdatePasswordField");
+    const updatePasswordField = document.getElementById("updatePasswordField");
 
-  toggleUpdatePasswordField.addEventListener("click", function () {
-    const type = updatePasswordField.getAttribute("type") === "password" ? "text" : "password";
-    updatePasswordField.setAttribute("type", type);
-
-    // Toggle between eye and eye-slash icons
-    this.classList.toggle("bi-eye");
-    this.classList.toggle("bi-eye-slash");
-  });
-</script>
+    toggleUpdatePasswordField.addEventListener("click", function () {
+        const type = updatePasswordField.getAttribute("type") === "password" ? "text" : "password";
+        updatePasswordField.setAttribute("type", type);
+        this.classList.toggle("bi-eye");
+        this.classList.toggle("bi-eye-slash");
+    });
+    </script>
 </body>
-
 </html>
