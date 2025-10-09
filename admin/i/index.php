@@ -375,8 +375,11 @@ foreach ($claimed_tables as $table) {
             </div>
             <!-- #END# Widgets -->
         </div>
+    
+    <?php include('footer.php')?>    
     </section>
 
+    
     <!-- Jquery Core Js -->
     <script src="../plugins/jquery/jquery.min.js"></script>
     <!-- Jquery Validation Plugin Css -->
@@ -464,6 +467,23 @@ foreach ($claimed_tables as $table) {
             toastr.success("Welcome administrator!");
         </script>
     <?php endif; ?>
+
+    <script>
+    let chatLoaded = false;
+
+    $('#openChatBtn').on('click', function() {
+    $('#chatPopup').modal('show');
+
+    if (!chatLoaded) {
+        $('#chatContent').html(`
+        <iframe src="live_chat.php" 
+                style="width:100%; height:100%; border:none;"></iframe>
+        `);
+        chatLoaded = true;
+    }
+    });
+    </script>
+
 
 </body>
 

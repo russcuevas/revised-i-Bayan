@@ -209,112 +209,106 @@ $_SESSION["is_approved_$barangay"] = $is_approved;
                     <h3 style="color: #B6771D;">Resident System for Mataasnakahoy Barangays</h3>
                 </div>
                 <!-- Widgets -->
-                <div class="row clearfix">
-                    <div class="col-sm-6 col-md-3 col-lg-4" onclick="window.location.href = 'family_profiling.php'">
-                        <div class="thumbnail text-center d-flex flex-column align-items-center justify-content-center" style="padding: 50px;">
-                            <i class="fas fa-users fa-3x mb-3 icon-style"></i>
-                            <div class="caption">
-                                <h3>Family Profiling</h3>
-                            </div>
-                        </div>
-                    </div>
+<div class="row clearfix">
+    <!-- First box - Family Profiling -->
+    <div class="col-sm-6 col-md-6 col-lg-6 mb-4" onclick="window.location.href = 'family_profiling.php'">
+        <div class="thumbnail text-center d-flex flex-column align-items-center justify-content-center" style="padding: 50px;">
+            <i class="fas fa-users fa-3x mb-3 icon-style"></i>
+            <div class="caption">
+                <h3>Family Profiling</h3>
+            </div>
+        </div>
+    </div>
 
-                    <div class="col-sm-6 col-md-3 col-lg-4" data-toggle="modal" data-target="#requestCertificateModal">
-                        <div class="thumbnail text-center d-flex flex-column align-items-center justify-content-center" style="padding: 50px;">
-                            <i class="fas fa-file fa-3x mb-3 icon-style"></i>
-                            <div class="caption">
-                                <h3>Document Request</h3>
-                            </div>
-                        </div>
-                    </div>
+    <!-- Second box - Document Request (Triggers modal) -->
+    <div class="col-sm-6 col-md-6 col-lg-6 mb-4" data-toggle="modal" data-target="#requestCertificateModal">
+        <div class="thumbnail text-center d-flex flex-column align-items-center justify-content-center" style="padding: 50px;">
+            <i class="fas fa-file fa-3x mb-3 icon-style"></i>
+            <div class="caption">
+                <h3>Document Request</h3>
+            </div>
+        </div>
+    </div>
 
-
-                    <div class="modal fade" id="requestCertificateModal" tabindex="-1" role="dialog" style="display: none;">
-                        <div class="modal-dialog modal-lg" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title" id="defaultModalLabel">Request</h4>
-                                </div>
-                                <div class="modal-body" style="max-height: 100vh; overflow-y: auto;">
-                                    <div class="row">
-                                        <div class="col-sm-6 col-md-3 col-lg-6" onclick="window.location.href = 'request_certificate.php'">
-                                            <div class="thumbnail text-center d-flex flex-column align-items-center justify-content-center" style="padding: 50px;">
-                                                <i class="fas fa-file fa-3x mb-3 icon-style"></i>
-                                                <div class="caption">
-                                                    <h3>Certificates</h3>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-6 col-md-3 col-lg-6" onclick="window.location.href = 'request_operate.php'">
-                                            <div class="thumbnail text-center d-flex flex-column align-items-center justify-content-center" style="padding: 50px;">
-                                                <i class="fas fa-file fa-3x mb-3 icon-style"></i>
-                                                <div class="caption">
-                                                    <h3>Operate</h3>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-6 col-md-3 col-lg-6" onclick="window.location.href = 'request_closure.php'">
-                                            <div class="thumbnail text-center d-flex flex-column align-items-center justify-content-center" style="padding: 50px;">
-                                                <i class="fas fa-file fa-3x mb-3 icon-style"></i>
-                                                <div class="caption">
-                                                    <h3>Closure</h3>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-6 col-md-3 col-lg-6" onclick="window.location.href = 'request_cedula.php'">
-                                            <div class="thumbnail text-center d-flex flex-column align-items-center justify-content-center" style="padding: 50px;">
-                                                <i class="fas fa-file fa-3x mb-3 icon-style"></i>
-                                                <div class="caption">
-                                                    <h3>Cedula</h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Footer Buttons aligned to bottom right -->
-                                <div class="modal-footer d-flex justify-content-end">
-                                    <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+    <!-- Modal for document request -->
+    <div class="modal fade" id="requestCertificateModal" tabindex="-1" role="dialog" style="display: none;">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="defaultModalLabel">Request</h4>
+                </div>
+                <div class="modal-body" style="max-height: 100vh; overflow-y: auto;">
+                    <div class="row">
+                        <!-- Inner modal boxes -->
+                        <div class="col-sm-6 col-md-6 col-lg-6 mb-4" onclick="window.location.href = 'request_certificate.php'">
+                            <div class="thumbnail text-center d-flex flex-column align-items-center justify-content-center" style="padding: 50px;">
+                                <i class="fas fa-file fa-3x mb-3 icon-style"></i>
+                                <div class="caption">
+                                    <h3>Certificates</h3>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- END ADD MODAL -->
 
-                    <div class="col-sm-6 col-md-3 col-lg-4" onclick="window.location.href = 'live_chat.php'">
-                        <div class="thumbnail text-center d-flex flex-column align-items-center justify-content-center" style="padding: 50px;">
-                            <i class="fas fa-comment fa-3x mb-3 icon-style"></i>
-                            <div class="caption">
-                                <h3>Live Chat</h3>
+                        <div class="col-sm-6 col-md-6 col-lg-6 mb-4" onclick="window.location.href = 'request_operate.php'">
+                            <div class="thumbnail text-center d-flex flex-column align-items-center justify-content-center" style="padding: 50px;">
+                                <i class="fas fa-file fa-3x mb-3 icon-style"></i>
+                                <div class="caption">
+                                    <h3>Operate</h3>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-2">
 
-                    </div>
-                    <div class="col-sm-6 col-md-3 col-lg-4" onclick="window.location.href = 'feedback.php'">
-                        <div class="thumbnail text-center d-flex flex-column align-items-center justify-content-center" style="padding: 50px;">
-                            <i class="fas fa-thumbs-up fa-3x mb-3 icon-style"></i>
-                            <div class="caption">
-                                <h3>Feedback</h3>
+                        <div class="col-sm-6 col-md-6 col-lg-6 mb-4" onclick="window.location.href = 'request_closure.php'">
+                            <div class="thumbnail text-center d-flex flex-column align-items-center justify-content-center" style="padding: 50px;">
+                                <i class="fas fa-file fa-3x mb-3 icon-style"></i>
+                                <div class="caption">
+                                    <h3>Closure</h3>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3 col-lg-4" onclick="window.location.href = 'about_us.php'">
-                        <div class="thumbnail text-center d-flex flex-column align-items-center justify-content-center" style="padding: 50px;">
-                            <i class="fas fa-book-open fa-3x mb-3 icon-style"></i>
-                            <div class="caption">
-                                <h3>About Us</h3>
+
+                        <div class="col-sm-6 col-md-6 col-lg-6 mb-4" onclick="window.location.href = 'request_cedula.php'">
+                            <div class="thumbnail text-center d-flex flex-column align-items-center justify-content-center" style="padding: 50px;">
+                                <i class="fas fa-file fa-3x mb-3 icon-style"></i>
+                                <div class="caption">
+                                    <h3>Cedula</h3>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="modal-footer d-flex justify-content-end">
+                    <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Third box - Feedback -->
+    <div class="col-sm-6 col-md-6 col-lg-6 mb-4" onclick="window.location.href = 'feedback.php'">
+        <div class="thumbnail text-center d-flex flex-column align-items-center justify-content-center" style="padding: 50px;">
+            <i class="fas fa-thumbs-up fa-3x mb-3 icon-style"></i>
+            <div class="caption">
+                <h3>Feedback</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fourth box - About Us -->
+    <div class="col-sm-6 col-md-6 col-lg-6 mb-4" onclick="window.location.href = 'about_us.php'">
+        <div class="thumbnail text-center d-flex flex-column align-items-center justify-content-center" style="padding: 50px;">
+            <i class="fas fa-book-open fa-3x mb-3 icon-style"></i>
+            <div class="caption">
+                <h3>About Us</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
                 <!-- #END# Widgets -->
             </div>
+            <?php include ('footer.php') ?>
         </section>
-        <!-- end content -->
     <?php else: ?>
 
         <!-- if not verified show -->
@@ -413,6 +407,21 @@ $_SESSION["is_approved_$barangay"] = $is_approved;
         </script>
     <?php endif; ?>
 
+        <script>
+    let chatLoaded = false;
+
+    $('#openChatBtn').on('click', function() {
+    $('#chatPopup').modal('show');
+
+    if (!chatLoaded) {
+        $('#chatContent').html(`
+        <iframe src="live_chat.php" 
+                style="width:100%; height:100%; border:none;"></iframe>
+        `);
+        chatLoaded = true;
+    }
+    });
+    </script>
 </body>
 
 </html>

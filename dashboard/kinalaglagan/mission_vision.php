@@ -239,6 +239,7 @@ $officials = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
         </div>
         </div>
+        <?php include ('footer.php') ?>
     </section>
     <!-- Jquery Core Js -->
     <script src="../plugins/jquery/jquery.min.js"></script>
@@ -284,6 +285,21 @@ $officials = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <!-- Demo Js -->
     <script src="../js/demo.js"></script>
     <script src="../plugins/sweetalert/sweetalert.min.js"></script>
+        <script>
+        let chatLoaded = false;
+
+        $('#openChatBtn').on('click', function() {
+        $('#chatPopup').modal('show');
+
+        if (!chatLoaded) {
+            $('#chatContent').html(`
+            <iframe src="live_chat.php" 
+                    style="width:100%; height:100%; border:none;"></iframe>
+            `);
+            chatLoaded = true;
+        }
+        });
+    </script>
 </body>
 
 </html>

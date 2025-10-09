@@ -371,6 +371,8 @@ $announcements = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <!-- #END# Basic Validation -->
         </div>
         </div>
+        <?php include('footer.php')?>    
+
     </section>
 
     <!-- Jquery Core Js -->
@@ -488,7 +490,21 @@ $announcements = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php endif; ?>
     </script>
 
+    <script>
+    let chatLoaded = false;
 
+    $('#openChatBtn').on('click', function() {
+    $('#chatPopup').modal('show');
+
+    if (!chatLoaded) {
+        $('#chatContent').html(`
+        <iframe src="live_chat.php" 
+                style="width:100%; height:100%; border:none;"></iframe>
+        `);
+        chatLoaded = true;
+    }
+    });
+    </script>
 </body>
 
 </html>

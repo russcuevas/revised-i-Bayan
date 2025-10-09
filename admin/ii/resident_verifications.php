@@ -270,6 +270,8 @@ foreach ($all_residents as $resident) {
             <!-- #END# Basic Validation -->
         </div>
         </div>
+        <?php include('footer.php')?>    
+
     </section>
 
     <!-- Jquery Core Js -->
@@ -347,6 +349,21 @@ foreach ($all_residents as $resident) {
             });
             <?php unset($_SESSION['error']); ?>
         <?php endif; ?>
+    </script>
+    <script>
+    let chatLoaded = false;
+
+    $('#openChatBtn').on('click', function() {
+    $('#chatPopup').modal('show');
+
+    if (!chatLoaded) {
+        $('#chatContent').html(`
+        <iframe src="live_chat.php" 
+                style="width:100%; height:100%; border:none;"></iframe>
+        `);
+        chatLoaded = true;
+    }
+    });
     </script>
 </body>
 

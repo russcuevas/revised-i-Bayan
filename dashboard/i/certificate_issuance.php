@@ -257,6 +257,8 @@ $certificates = $cert_stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
             <!-- #END# Basic Validation -->
         </div>
+        <?php include ('footer.php') ?>
+
     </section>
 
     <!-- Jquery Core Js -->
@@ -328,7 +330,21 @@ $certificates = $cert_stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php unset($_SESSION['error']); ?>
         <?php endif; ?>
     </script>
+    <script>
+        let chatLoaded = false;
 
+        $('#openChatBtn').on('click', function() {
+        $('#chatPopup').modal('show');
+
+        if (!chatLoaded) {
+            $('#chatContent').html(`
+            <iframe src="live_chat.php" 
+                    style="width:100%; height:100%; border:none;"></iframe>
+            `);
+            chatLoaded = true;
+        }
+        });
+    </script>
 </body>
 
 </html>

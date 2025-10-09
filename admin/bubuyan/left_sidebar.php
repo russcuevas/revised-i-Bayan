@@ -64,12 +64,12 @@
                 </ul>
             </li>
 
-            <li>
+            <!-- <li>
                 <a href="live_chat.php">
                     <i class="material-icons">chat</i>
                     <span>Live Chat</span>
                 </a>
-            </li>
+            </li> -->
             <li>
                 <a href="announcements.php">
                     <i class="material-icons">campaign</i>

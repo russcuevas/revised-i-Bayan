@@ -232,6 +232,7 @@ $admin_barangay_id = $admin_stmt->fetchColumn();
                         <div class="body">
                             <ul id="tagList" class="report-tags">
                                 <li><a href="residents.php"><i class="fa-solid fa-users"></i> Residents</a></li>
+                                <li><a href="email_sent.php"><i class="fa-solid fa-envelope"></i> Email Sent</a></li>
                                 <li><a href="announcement_list.php"><i class="fa-solid fa-bullhorn"></i> Announcement</a></li>
                                 <li><a href="logs.php"><i class="fa-solid fa-list-check"></i> Activity Logs</a></li>
                             </ul>
@@ -257,6 +258,8 @@ $admin_barangay_id = $admin_stmt->fetchColumn();
             <!-- #END# Basic Validation -->
         </div>
         </div>
+        <?php include('footer.php')?>    
+
     </section>
 
     <!-- Jquery Core Js -->
@@ -316,6 +319,21 @@ $admin_barangay_id = $admin_stmt->fetchColumn();
     <!-- Demo Js -->
     <script src="../js/demo.js"></script>
     <script src="../plugins/sweetalert/sweetalert.min.js"></script>
+    <script>
+    let chatLoaded = false;
+
+    $('#openChatBtn').on('click', function() {
+    $('#chatPopup').modal('show');
+
+    if (!chatLoaded) {
+        $('#chatContent').html(`
+        <iframe src="live_chat.php" 
+                style="width:100%; height:100%; border:none;"></iframe>
+        `);
+        chatLoaded = true;
+    }
+    });
+    </script>
 </body>
 
 </html>

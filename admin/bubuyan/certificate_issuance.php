@@ -249,6 +249,8 @@ $admin_barangay_id = $admin_stmt->fetchColumn();
             </div>
             <!-- #END# Basic Validation -->
         </div>
+        <?php include('footer.php')?>    
+
     </section>
 
     <!-- Jquery Core Js -->
@@ -305,7 +307,21 @@ $admin_barangay_id = $admin_stmt->fetchColumn();
             <?php unset($_SESSION['error']); ?>
         <?php endif; ?>
     </script>
+    <script>
+    let chatLoaded = false;
 
+    $('#openChatBtn').on('click', function() {
+    $('#chatPopup').modal('show');
+
+    if (!chatLoaded) {
+        $('#chatContent').html(`
+        <iframe src="live_chat.php" 
+                style="width:100%; height:100%; border:none;"></iframe>
+        `);
+        chatLoaded = true;
+    }
+    });
+    </script>
 </body>
 
 </html>

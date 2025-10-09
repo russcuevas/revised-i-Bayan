@@ -66,6 +66,8 @@ if (!$user) {
     <meta charset="UTF-8" />
     <title>My Profile</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
     <link href="../plugins/sweetalert/sweetalert.css" rel="stylesheet" />
 </head>
 
@@ -117,9 +119,13 @@ if (!$user) {
                         <input type="email" class="form-control" id="email" name="email" value="<?= htmlspecialchars($user['email']) ?>" required>
                     </div>
 
-                    <div class="mb-3">
+                    <div class="mb-3 position-relative">
                         <label for="password" class="form-label">New Password (Leave blank to keep current)</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter new password">
+                        <input type="password" class="form-control pe-5" id="password" name="password" placeholder="Enter new password">
+
+                        <!-- 👁️ Toggle Icon -->
+                        <i class="bi bi-eye-slash" id="togglePassword"
+                            style="position: absolute; top: 70%; right: 15px; transform: translateY(-50%); cursor: pointer;"></i>
                     </div>
                 </div>
 
@@ -161,6 +167,19 @@ if (!$user) {
         <?php endif; ?>
     </script>
 
+    <script>
+        const togglePassword = document.getElementById("togglePassword");
+        const passwordInput = document.getElementById("password");
+
+        togglePassword.addEventListener("click", function() {
+            const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
+            passwordInput.setAttribute("type", type);
+
+            // Toggle the eye / eye-slash icons
+            this.classList.toggle("bi-eye");
+            this.classList.toggle("bi-eye-slash");
+        });
+    </script>
 </body>
 
 </html>

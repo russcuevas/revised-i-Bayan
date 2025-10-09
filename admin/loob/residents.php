@@ -12,12 +12,11 @@ if (!isset($_SESSION[$session_key])) {
 }
 
 // details welcome
+include '../../database/connection.php';
+// details welcome
 $barangay_name_key = "barangay_name_$barangay";
 $admin_name_key = "admin_name_$barangay";
 $admin_position_key = "admin_position_$barangay";
-
-// database connection
-include '../../database/connection.php';
 
 // fetching residents where in same of the barangay of the admin
 $admin_id = $_SESSION[$session_key];
@@ -25,12 +24,49 @@ $admin_stmt = $conn->prepare("SELECT barangay_id FROM tbl_admin WHERE id = ?");
 $admin_stmt->execute([$admin_id]);
 $admin_barangay_id = $admin_stmt->fetchColumn();
 
-// fetching residents
-$family_stmt = $conn->prepare("SELECT * FROM tbl_residents_family_members WHERE barangay_address = ? AND is_approved = 1");
-$family_stmt->execute([$admin_barangay_id]);
+// 🔹 Get current filter (default: all)
+$filter = isset($_GET['filter']) ? strtolower(trim($_GET['filter'])) : 'all';
+$purok = trim($_GET['purok'] ?? '');
+$gender = trim($_GET['gender'] ?? '');
+$age = trim($_GET['age'] ?? '');
 
+// 🔹 Base query
+$query = "SELECT * FROM tbl_residents_family_members WHERE barangay_address = ? AND is_approved = 1";
+$params = [$admin_barangay_id];
+
+// 🔹 Main category filters
+if ($filter === 'working') {
+    $query .= " AND is_working = 1";
+} elseif ($filter === 'student') {
+    $query .= " AND is_working = 2";
+} elseif ($filter === 'none') {
+    $query .= " AND is_working = 3";
+} elseif ($filter === 'senior') {
+    $query .= " AND is_working = 4";
+} elseif ($filter === 'ofw') {
+    $query .= " AND is_working = 1 AND LOWER(occupation) LIKE '%ofw%'";
+}
+
+// 🔹 Additional filters
+if (!empty($purok)) {
+    $query .= " AND purok LIKE ?";
+    $params[] = "%$purok%";
+}
+
+if (!empty($gender)) {
+    $query .= " AND gender = ?";
+    $params[] = $gender;
+}
+
+if (!empty($age)) {
+    $query .= " AND age = ?";
+    $params[] = $age;
+}
+
+// 🔹 Execute query
+$family_stmt = $conn->prepare($query);
+$family_stmt->execute($params);
 $family_members = $family_stmt->fetchAll(PDO::FETCH_ASSOC);
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -215,95 +251,159 @@ $family_members = $family_stmt->fetchAll(PDO::FETCH_ASSOC);
     </section>
 
     <section class="content">
-        <div class="container-fluid">
-            <div class="block-header">
-                <ol style="font-size: 15px;" class="breadcrumb breadcrumb-col-red">
-                    <li><a href="index.php"><i style="font-size: 20px;" class="material-icons">home</i>
-                            Dashboard</a></li>
-                    <li class="active"><i style="font-size: 20px;" class="material-icons">description</i> Reports
-                    </li>
-                </ol>
-            </div>
-            <!-- Basic Validation -->
-            <div class="block-header text-left">
-                <h3 style="color: #B6771D;">Generate Reports</h3>
-            </div>
-            <div class="row clearfix">
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <div class="card">
-                        <div class="header">
-                            <h2>CATEGORIES</h2>
-                        </div>
-                        <div class="body">
-                            <ul id="tagList" class="report-tags">
-                                <li><a href="residents.php" class="active"><i class="fa-solid fa-users"></i> Residents</a></li>
-                                <li><a href="announcement_list.php"><i class="fa-solid fa-bullhorn"></i> Announcement</a></li>
-                                <li><a href="logs.php"><i class="fa-solid fa-list-check"></i> Activity Logs</a></li>
-                            </ul>
-                        </div>
+    <div class="container-fluid">
 
+        <!-- 🔹 Breadcrumb -->
+        <div class="block-header">
+            <ol class="breadcrumb breadcrumb-col-red" style="font-size: 15px;">
+                <li>
+                    <a href="index.php"><i class="material-icons" style="font-size: 20px;">home</i> Dashboard</a>
+                </li>
+                <li class="active">
+                    <i class="material-icons" style="font-size: 20px;">description</i> Reports
+                </li>
+            </ol>
+        </div>
+
+        <div class="block-header text-left">
+            <h3 style="color: #B6771D;">Generate Reports</h3>
+        </div>
+
+        <div class="row clearfix">
+
+            <!-- 🔹 LEFT PANEL -->
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>CATEGORIES</h2>
+                    </div>
+                    <div class="body">
+                        <ul id="tagList" class="report-tags">
+                            <li><a href="residents.php" class="active"><i class="fa-solid fa-users"></i> Residents</a></li>
+                            <li><a href="email_sent.php"><i class="fa-solid fa-envelope"></i> Email Sent</a></li>
+                            <li><a href="announcement_list.php"><i class="fa-solid fa-bullhorn"></i> Announcement</a></li>
+                            <li><a href="logs.php"><i class="fa-solid fa-list-check"></i> Activity Logs</a></li>
+                        </ul>
                     </div>
                 </div>
+            </div>
 
-                <!-- RIGHT CARD -->
-                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                    <div class="card">
-                        <div class="header" style="display: flex; justify-content: space-between; align-items: center;">
-                            <h2>RESIDENTS LIST</h2>
-                            <a href="print_residents.php" target="_blank" class="btn btn-primary">
+            <!-- 🔹 RIGHT PANEL -->
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>RESIDENTS LIST</h2>
+                    </div>
+
+                    <!-- 🔹 Filter Row -->
+                    <div class="body" style="padding-top: 10px;">
+                        
+
+                        <!-- 🔹 Print Button (aligned right) -->
+                        <div class="text-right" style="margin-bottom: 15px;">
+                            <a href="print_residents.php?filter=<?= urlencode($filter) ?>&purok=<?= urlencode($_GET['purok'] ?? '') ?>&gender=<?= urlencode($_GET['gender'] ?? '') ?>&age=<?= urlencode($_GET['age'] ?? '') ?>" 
+                               target="_blank" class="btn" style="background-color: #337ab7; color: white;">
                                 <i class="fa fa-print"></i> Print
                             </a>
                         </div>
+<form id="filterForm" method="GET" class="row g-2 align-items-center" style="margin-bottom: 15px;">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <select name="filter" class="form-control show-tick">
+                                    <option value="all" <?= $filter === 'all' ? 'selected' : '' ?>>All</option>
+                                    <option value="working" <?= $filter === 'working' ? 'selected' : '' ?>>Working</option>
+                                    <option value="ofw" <?= $filter === 'ofw' ? 'selected' : '' ?>>OFW</option>
+                                    <option value="student" <?= $filter === 'student' ? 'selected' : '' ?>>Student</option>
+                                    <option value="none" <?= $filter === 'none' ? 'selected' : '' ?>>None</option>
+                                    <option value="senior" <?= $filter === 'senior' ? 'selected' : '' ?>>Senior Citizen</option>
+                                </select>
+                            </div>
 
-                        <div class="body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
-                                    <thead>
-                                        <tr>
-                                            <th>Fullname</th>
-                                            <th>Purok</th>
-                                            <th>Mobile</th>
-                                            <th>Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                            <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                                <input type="text" name="purok" value="<?= htmlspecialchars($_GET['purok'] ?? '') ?>" class="form-control" placeholder="Filter by Purok">
+                            </div>
+
+                            <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                                <select name="gender" class="form-control show-tick">
+                                    <option value="">All Genders</option>
+                                    <option value="Male" <?= (($_GET['gender'] ?? '') === 'Male') ? 'selected' : '' ?>>Male</option>
+                                    <option value="Female" <?= (($_GET['gender'] ?? '') === 'Female') ? 'selected' : '' ?>>Female</option>
+                                </select>
+                            </div>
+
+                            <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                                <input type="number" name="age" value="<?= htmlspecialchars($_GET['age'] ?? '') ?>" class="form-control" placeholder="Age">
+                            </div>
+
+                            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-start" style="gap: 5px;">
+                                <button type="submit" class="btn" style="background-color: #B6771D; color: white;">
+                                    <i class="fa fa-filter"></i> Apply
+                                </button>
+                                <a href="residents.php" class="btn btn-default">
+                                    <i class="fa fa-times"></i> Reset
+                                </a>
+                            </div>
+                        </form>
+                        <!-- 🔹 Residents Table -->
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                <thead>
+                                    <tr>
+                                        <th>Fullname</th>
+                                        <th>Gender</th>
+                                        <th>Age</th>
+                                        <th>Purok</th>
+                                        <th>Mobile</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php if (count($family_members) > 0): ?>
                                         <?php foreach ($family_members as $member): ?>
                                             <?php
-                                            // Format full name
                                             $full_name = htmlspecialchars(
                                                 $member['first_name'] . ' ' .
-                                                    ($member['middle_name'] ? $member['middle_name'][0] . '. ' : '') .
-                                                    $member['last_name'] .
-                                                    ($member['suffix'] ? ', ' . $member['suffix'] : '')
+                                                ($member['middle_name'] ? $member['middle_name'][0] . '. ' : '') .
+                                                $member['last_name'] .
+                                                ($member['suffix'] ? ', ' . $member['suffix'] : '')
                                             );
 
-                                            // Translate status
                                             $status_map = [
                                                 1 => 'Working',
                                                 2 => 'Student',
-                                                3 => 'None'
+                                                3 => 'None',
+                                                4 => 'Senior Citizen'
                                             ];
                                             $status = $status_map[$member['is_working']] ?? 'Unknown';
+                                            if ($member['is_working'] == 1 && strtolower($member['occupation']) === 'ofw') {
+                                                $status = 'OFW';
+                                            }
                                             ?>
                                             <tr>
                                                 <td><?= $full_name ?></td>
+                                                <td><?= htmlspecialchars($member['gender']) ?></td>
+                                                <td><?= htmlspecialchars($member['age']) ?></td>
                                                 <td><?= htmlspecialchars($member['purok']) ?></td>
                                                 <td><?= htmlspecialchars($member['phone_number']) ?></td>
-                                                <td><?= $status ?></td>
+                                                <td><?= htmlspecialchars($status) ?></td>
                                             </tr>
                                         <?php endforeach; ?>
-                                    </tbody>
-                                </table>
-                            </div>
+                                    <?php else: ?>
+                                        <tr>
+                                            <td colspan="6" class="text-center text-danger">No residents found for this filter.</td>
+                                        </tr>
+                                    <?php endif; ?>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- #END# Basic Validation -->
-        </div>
-        </div>
-    </section>
 
+        </div>
+    </div>
+    <?php include('footer.php')?>    
+
+</section>
     <!-- Jquery Core Js -->
     <script src="../plugins/jquery/jquery.min.js"></script>
     <!-- Jquery Validation Plugin Css -->
@@ -361,6 +461,21 @@ $family_members = $family_stmt->fetchAll(PDO::FETCH_ASSOC);
     <!-- Demo Js -->
     <script src="../js/demo.js"></script>
     <script src="../plugins/sweetalert/sweetalert.min.js"></script>
+    <script>
+    let chatLoaded = false;
+
+    $('#openChatBtn').on('click', function() {
+    $('#chatPopup').modal('show');
+
+    if (!chatLoaded) {
+        $('#chatContent').html(`
+        <iframe src="live_chat.php" 
+                style="width:100%; height:100%; border:none;"></iframe>
+        `);
+        chatLoaded = true;
+    }
+    });
+    </script>
 </body>
 
 </html>

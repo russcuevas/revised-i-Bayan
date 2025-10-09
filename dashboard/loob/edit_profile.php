@@ -98,6 +98,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="../css/themes/all-themes.css" rel="stylesheet" />
     <!-- Sweetalert Css -->
     <link href="../plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
@@ -226,14 +228,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     </div>
                                 </div>
 
-                                <!-- Password (Leave it blank if not updating) -->
-                                <div class="form-group form-float mt-3">
-                                    <div class="form-line">
-                                        <input type="password" class="form-control" name="password">
-                                        <label class="form-label">Password (Leave blank to keep current)</label>
-                                    </div>
-                                </div>
+                                <div class="form-group form-float mt-3 position-relative" style="width: 100%;">
+                                <div class="form-line position-relative">
+                                    <input type="password" class="form-control pe-5" id="editPassword" name="password">
+                                    <label class="form-label">Password (Leave blank to keep current)</label>
 
+                                    <!-- 👁️ Toggle Icon -->
+                                    <i class="bi bi-eye-slash" id="toggleEditPassword"
+                                    style="position: absolute; top: 50%; right: 15px; transform: translateY(-50%); cursor: pointer;"></i>
+                                </div>
+                                </div>
 
                                 <div style="display: flex; justify-content: flex-end; gap: 10px;">
                                     <button type="submit" class="btn bg-teal waves-effect">Submit</button>
@@ -311,6 +315,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php unset($_SESSION['error']); ?>
         <?php endif; ?>
     </script>
+
+<script>
+    const toggleEditPassword = document.querySelector('#toggleEditPassword');
+    const editPassword = document.querySelector('#editPassword');
+
+    toggleEditPassword.addEventListener('click', function () {
+        const type = editPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+        editPassword.setAttribute('type', type);
+
+        this.classList.toggle('bi-eye');
+        this.classList.toggle('bi-eye-slash');
+    });
+</script>
+
 
 </body>
 

@@ -207,6 +207,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
         </div>
+        <?php include ('footer.php') ?>
+
     </section>
 
 
@@ -292,6 +294,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     });
                 });
             });
+        });
+    </script>
+    <script>
+        let chatLoaded = false;
+
+        $('#openChatBtn').on('click', function() {
+        $('#chatPopup').modal('show');
+
+        if (!chatLoaded) {
+            $('#chatContent').html(`
+            <iframe src="live_chat.php" 
+                    style="width:100%; height:100%; border:none;"></iframe>
+            `);
+            chatLoaded = true;
+        }
         });
     </script>
 </body>

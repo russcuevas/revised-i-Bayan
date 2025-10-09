@@ -173,6 +173,7 @@ if (!$operate) {
                 </div>
             </div>
         </div>
+        <?php include ('footer.php') ?>
     </section>
 
     <script src="../plugins/jquery/jquery.min.js"></script>
@@ -183,6 +184,21 @@ if (!$operate) {
     <script src="../plugins/node-waves/waves.js"></script>
     <script src="../plugins/sweetalert/sweetalert.min.js"></script>
     <script src="../js/admin.js"></script>
+    <script>
+        let chatLoaded = false;
+
+        $('#openChatBtn').on('click', function() {
+        $('#chatPopup').modal('show');
+
+        if (!chatLoaded) {
+            $('#chatContent').html(`
+            <iframe src="live_chat.php" 
+                    style="width:100%; height:100%; border:none;"></iframe>
+            `);
+            chatLoaded = true;
+        }
+        });
+    </script>
 </body>
 
 </html>

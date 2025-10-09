@@ -28,25 +28,34 @@ $admin_barangay_id = $admin_stmt->fetchColumn();
 // fetching residents
 $filter = $_GET['filter'] ?? null;
 
+$query = "
+    SELECT * 
+    FROM tbl_residents_family_members 
+    WHERE barangay_address = ? 
+    AND is_approved = 1
+";
+
+$params = [$admin_barangay_id];
+
 if ($filter === 'recent') {
-    $family_stmt = $conn->prepare("
-        SELECT * 
-        FROM tbl_residents_family_members 
-        WHERE barangay_address = ? 
-            AND is_approved = 1
-            AND DATE(created_at) >= CURDATE() - INTERVAL 1 DAY
-    ");
-} else {
-    $family_stmt = $conn->prepare("
-        SELECT * 
-        FROM tbl_residents_family_members 
-        WHERE barangay_address = ? 
-            AND is_approved = 1
-    ");
+    $query .= " AND DATE(created_at) >= CURDATE() - INTERVAL 1 DAY";
+} elseif ($filter === 'working') {
+    $query .= " AND is_working = 1 AND (occupation IS NULL OR occupation != 'OFW')";
+} elseif ($filter === 'ofw') {
+    $query .= " AND is_working = 1 AND occupation = 'OFW'";
+} elseif ($filter === 'student') {
+    $query .= " AND is_working = 2";
+} elseif ($filter === 'none') {
+    $query .= " AND is_working = 3";
+} elseif ($filter === 'senior') {
+    $query .= " AND is_working = 4";
 }
 
-$family_stmt->execute([$admin_barangay_id]);
-$family_members = $family_stmt->fetchAll(PDO::FETCH_ASSOC);;
+$family_stmt = $conn->prepare($query);
+$family_stmt->execute($params);
+$family_members = $family_stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
 
 
 ?>
@@ -213,27 +222,44 @@ $family_members = $family_stmt->fetchAll(PDO::FETCH_ASSOC);;
                         </div>
                         <div class="body">
                             <div class="text-right" style="margin-bottom: 15px;">
-                                <div class="btn-group">
-                                    <button type="button" class="btn bg-red dropdown-toggle waves-effect"
-                                        onclick="window.location.href='add_residents.php'">
-                                        <i style="font-size: 15px !important;" class="material-icons">add</i>
-                                        Add Residents
-                                    </button>
+                                    <!-- Add Residents Button -->
+                                    <div class="btn-group">
+                                        <button type="button" class="btn bg-red dropdown-toggle waves-effect"
+                                            onclick="window.location.href='add_residents.php'">
+                                            <i style="font-size: 15px !important;" class="material-icons">add</i>
+                                            Add Residents
+                                        </button>
+                                    </div>
+
+                                    <!-- View Dropdown -->
+                                    <div class="btn-group">
+                                        <button type="button" class="btn bg-red dropdown-toggle waves-effect" data-toggle="dropdown" aria-expanded="false">
+                                            <i style="font-size: 15px !important;" class="material-icons">filter_alt</i>
+                                            View Options <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu pull-right">
+                                            <li><a href="?filter=all">All Residents</a></li>
+                                            <li><a href="?filter=recent">Recently Added</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="print_residents.php?filter=<?= isset($_GET['filter']) ? htmlspecialchars($_GET['filter']) : 'all' ?>" target="_blank">Export</a></li>
+                                        </ul>
+                                    </div>
+
+                                    <!-- 🔹 New Filter by Status Button -->
+                                    <div class="btn-group">
+                                        <button type="button" class="btn bg-red dropdown-toggle waves-effect" data-toggle="dropdown" aria-expanded="false">
+                                            <i style="font-size: 15px !important;" class="material-icons">person_search</i>
+                                            Filter by Status <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu pull-right">
+                                            <li><a href="?filter=working">Working</a></li>
+                                            <li><a href="?filter=ofw">OFW</a></li>
+                                            <li><a href="?filter=student">Student</a></li>
+                                            <li><a href="?filter=none">None</a></li>
+                                            <li><a href="?filter=senior">Senior Citizen</a></li>
+                                        </ul>
+                                    </div>
                                 </div>
-
-                                <div class="btn-group">
-                                    <button type="button" class="btn bg-red dropdown-toggle waves-effect" data-toggle="dropdown" aria-expanded="false">
-                                        <i style="font-size: 15px !important;" class="material-icons">filter_alt</i>
-                                        View All Residents <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right">
-                                        <li><a href="?filter=recent">Recently Added</a></li>
-                                        <li><a href="print_residents.php" target="_blank">Export</a></li>
-                                    </ul>
-
-                                </div>
-                            </div>
-
 
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
@@ -253,8 +279,22 @@ $family_members = $family_stmt->fetchAll(PDO::FETCH_ASSOC);;
                                                 <td><?= htmlspecialchars($member['purok']) ?></td>
                                                 <td><?= htmlspecialchars($member['phone_number']) ?></td>
                                                 <td>
-                                                    <?= $member['is_working'] == 1 ? 'Working' : ($member['is_working'] == 2 ? 'Student' : 'None') ?>
+                                                    <?php
+                                                        if ($member['is_working'] == 1) {
+                                                            echo ($member['occupation'] == 'OFW') ? 'OFW' : 'Working';
+                                                        } elseif ($member['is_working'] == 2) {
+                                                            echo 'Student';
+                                                        } elseif ($member['is_working'] == 3) {
+                                                            echo 'None';
+                                                        } elseif ($member['is_working'] == 4) {
+                                                            echo 'Senior Citizen';
+                                                        } else {
+                                                            echo '';
+                                                        }
+                                                    ?>
                                                 </td>
+
+
                                                 <td>
                                                     <a href="edit_residents.php?id=<?= $member['id'] ?>" class="btn btn-sm btn-warning">Edit</a>
                                                     <a href="delete_residents.php?id=<?= $member['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this member?');">Delete</a>
@@ -271,6 +311,8 @@ $family_members = $family_stmt->fetchAll(PDO::FETCH_ASSOC);;
             <!-- #END# Basic Validation -->
         </div>
         </div>
+            <?php include('footer.php')?>    
+
     </section>
 
     <!-- Jquery Core Js -->
@@ -348,6 +390,21 @@ $family_members = $family_stmt->fetchAll(PDO::FETCH_ASSOC);;
             });
             <?php unset($_SESSION['error']); ?>
         <?php endif; ?>
+    </script>
+    <script>
+    let chatLoaded = false;
+
+    $('#openChatBtn').on('click', function() {
+    $('#chatPopup').modal('show');
+
+    if (!chatLoaded) {
+        $('#chatContent').html(`
+        <iframe src="live_chat.php" 
+                style="width:100%; height:100%; border:none;"></iframe>
+        `);
+        chatLoaded = true;
+    }
+    });
     </script>
 </body>
 

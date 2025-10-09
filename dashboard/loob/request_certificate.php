@@ -355,6 +355,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <!-- Right Column: Requirements and Pickup Info -->
                                     <div class="col-md-6 pl-4">
                                         <h4 class="bold span-or mb-4" style="font-weight: 900; color: #B6771D;">Requirements</h4>
+                                        <div class="alert alert-success mt-4" role="alert" style="border-left: 5px solid #B6771D;">
+                                        <strong>Data Privacy Notice:</strong> In compliance with Republic Act No. 10173, otherwise known as the Data Privacy Act of 2012, 
+                                        all personal data collected will be treated with the highest level of confidentiality. 
+                                        Information provided will only be used for legitimate and authorized purposes related to this registration and will not be disclosed to third parties without your consent, unless required by law.
+                                        </div>
                                         <div class="form-group form-float" style="margin-top: 30px;">
                                             <div class="form-line">
                                                 <input type="file" class="form-control" name="valid_id" required>
@@ -422,6 +427,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <!-- #END# Basic Validation -->
         </div>
+        <?php include ('footer.php') ?>
     </section>
 
     <!-- Jquery Core Js -->
@@ -515,7 +521,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php unset($_SESSION['error']); ?>
         <?php endif; ?>
     </script>
+    <script>
+        let chatLoaded = false;
 
+        $('#openChatBtn').on('click', function() {
+        $('#chatPopup').modal('show');
+
+        if (!chatLoaded) {
+            $('#chatContent').html(`
+            <iframe src="live_chat.php" 
+                    style="width:100%; height:100%; border:none;"></iframe>
+            `);
+            chatLoaded = true;
+        }
+        });
+    </script>
 </body>
 
 </html>

@@ -170,13 +170,7 @@ if (!$user) {
         <?php endif; ?>
     </script>
 
-    <script>
-        // If there was an error in the update, open the modal automatically so the user can fix inputs
-        <?php if (!empty($error)) : ?>
-            var editModal = new bootstrap.Modal(document.getElementById('editProfileModal'));
-            editModal.show();
-        <?php endif; ?>
-    </script>
+
 
 </body>
 

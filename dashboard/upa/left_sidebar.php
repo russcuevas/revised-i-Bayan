@@ -98,12 +98,7 @@ $certificate_active = in_array($current_page, $certificate_pages);
                     </ul>
                 </li>
 
-                <li class="<?= $current_page == 'live_chat.php' ? 'active' : '' ?>">
-                    <a href="live_chat.php">
-                        <i class="material-icons">chat</i>
-                        <span>Live Chat</span>
-                    </a>
-                </li>
+
 
                 <li class="<?= $current_page == 'feedback.php' ? 'active' : '' ?>">
                     <a href="feedback.php">
@@ -112,12 +107,13 @@ $certificate_active = in_array($current_page, $certificate_pages);
                     </a>
                 </li>
 
-                <li class="<?= $current_page == 'about_us.php' ? 'active' : '' ?>">
+                <li class="<?= ($current_page == 'about_us.php' || $current_page == 'mission_vision.php') ? 'active' : '' ?>">
                     <a href="about_us.php">
                         <i class="material-icons">menu_book</i>
                         <span>About Us</span>
                     </a>
                 </li>
+
 
                 <li style="display: none;" class="<?= $current_page == 'edit_profile.php' ? 'active' : '' ?>">
                     <a href="edit_profile.php">

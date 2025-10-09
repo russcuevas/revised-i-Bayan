@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $conn->prepare("DELETE FROM tbl_chats WHERE room_id = ?");
         $stmt->execute([$room_id]);
 
-        $_SESSION['success'] = "Chat history deleted.";
+        // $_SESSION['success'] = "Chat history deleted.";
     } catch (PDOException $e) {
         $_SESSION['error'] = "Failed to delete chat: " . $e->getMessage();
     }

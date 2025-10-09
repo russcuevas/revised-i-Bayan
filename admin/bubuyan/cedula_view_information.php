@@ -1,6 +1,10 @@
 <?php
 session_start();
 include '../../database/connection.php';
+require '../../vendor/autoload.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 $barangay = basename(__DIR__);
 $session_key = "admin_id_$barangay";
@@ -101,45 +105,81 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['status'], $_POST['ced
         header("Location: cedula_view_information.php?id=" . $cedula_id);
         exit();
     } elseif ($updated && $new_status === 'To Pick Up') {
-        // Fetch the cedula data to get the resident details
         $stmt = $conn->prepare("SELECT * FROM tbl_cedula WHERE id = ?");
         $stmt->execute([$cedula_id]);
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($data) {
-            // Send SMS for "To Pick Up" status
-            $resident_stmt = $conn->prepare("SELECT phone_number, first_name FROM tbl_residents WHERE id = ?");
+            $resident_stmt = $conn->prepare("SELECT phone_number, email, first_name FROM tbl_residents WHERE id = ?");
             $resident_stmt->execute([$data['resident_id']]);
             $resident = $resident_stmt->fetch(PDO::FETCH_ASSOC);
 
-            if ($resident && !empty($resident['phone_number'])) {
-                $apikey = 'b2a42d09e5cd42585fcc90bf1eeff24e';
-                $number = $resident['phone_number'];
+            if ($resident) {
                 $name = ucfirst(strtolower($resident['first_name']));
                 $amount = number_format($data['total_amount'], 2);
                 $certificate_type = ucfirst(strtolower($data['certificate_type']));
-                $message = "Hi $name, your $certificate_type is ready for pickup. Please bring ₱$amount. Thank you!";
-                $sendername = 'BPTOCEANUS';
 
-                $ch = curl_init();
-                $parameters = [
-                    'apikey' => $apikey,
-                    'number' => $number,
-                    'message' => $message,
-                    'sendername' => $sendername
-                ];
+                // -------- SEND EMAIL FIRST ----------
+                if (!empty($resident['email'])) {
+                    $email = $resident['email'];
+                    $fullname = $name;
 
-                curl_setopt($ch, CURLOPT_URL, 'https://semaphore.co/api/v4/messages');
-                curl_setopt($ch, CURLOPT_POST, 1);
-                curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($parameters));
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    $mail = new PHPMailer(true);
 
-                $output = curl_exec($ch);
-                curl_close($ch);
+                    try {
+                        $mail->isSMTP();
+                        $mail->Host = 'smtp.gmail.com';
+                        $mail->SMTPAuth = true;
+                        $mail->Username = 'gmanagementtt111@gmail.com';
+                        $mail->Password = 'skbtosbmkiffrajr';
+                        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                        $mail->Port = 587;
+
+                        $mail->setFrom('gsu-erequest@gmail.com', 'LGU Mataasnakahoy');
+                        $mail->addAddress($email, $fullname);
+
+                        $mail->isHTML(true);
+                        $mail->Subject = 'Your ' . $certificate_type . ' is Ready for Pickup';
+
+                        $mail_body = "<p>Dear {$fullname},</p>
+                                  <p>Your {$certificate_type} is now ready for pickup.</p>
+                                  <p>Please bring ₱{$amount} upon claiming at the barangay office.</p>
+                                  <p>Thank you,<br>Barangay Admin</p>";
+
+                        $mail->Body = $mail_body;
+                        $mail->send();
+                    } catch (Exception $e) {
+                        error_log("Email failed to send: {$mail->ErrorInfo}");
+                    }
+                }
+
+                // -------- THEN SEND SMS ----------
+                if (!empty($resident['phone_number'])) {
+                    $apikey = 'b2a42d09e5cd42585fcc90bf1eeff24e';
+                    $number = $resident['phone_number'];
+                    $message = "Hi $name, your $certificate_type is ready for pickup. Please bring ₱$amount. Thank you!";
+                    $sendername = 'BPTOCEANUS';
+
+                    $ch = curl_init();
+                    $parameters = [
+                        'apikey' => $apikey,
+                        'number' => $number,
+                        'message' => $message,
+                        'sendername' => $sendername
+                    ];
+
+                    curl_setopt($ch, CURLOPT_URL, 'https://semaphore.co/api/v4/messages');
+                    curl_setopt($ch, CURLOPT_POST, 1);
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($parameters));
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+                    $output = curl_exec($ch);
+                    curl_close($ch);
+                }
             }
         }
 
-        $_SESSION['success'] = "Status updated successfully";
+        $_SESSION['success'] = "Status updated successfully.";
         header("Location: cedula_view_information.php?id=" . $cedula_id);
         exit();
     }
@@ -333,6 +373,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['status'], $_POST['ced
             </div>
         </div>
         </div>
+        <?php include('footer.php')?>    
+
     </section>
 
 
@@ -364,6 +406,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['status'], $_POST['ced
         <?php endif; ?>
     </script>
     <script src="../js/admin.js"></script>
+    <script>
+    let chatLoaded = false;
+
+    $('#openChatBtn').on('click', function() {
+    $('#chatPopup').modal('show');
+
+    if (!chatLoaded) {
+        $('#chatContent').html(`
+        <iframe src="live_chat.php" 
+                style="width:100%; height:100%; border:none;"></iframe>
+        `);
+        chatLoaded = true;
+    }
+    });
+    </script>
 </body>
 
 </html>

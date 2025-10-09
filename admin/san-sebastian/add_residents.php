@@ -338,6 +338,8 @@ $admin_barangay_name = $barangay_stmt->fetchColumn();
                                         <label for="working">Working</label>
                                         <input type="radio" name="is_working" value="2" id="student" style="margin-left: 15px;">
                                         <label for="student">Student</label>
+                                        <input type="radio" name="is_working" value="4" id="senior_citizen" style="margin-left: 15px;">
+                                        <label for="senior_citizen">Senior Citizen</label>
                                         <input type="radio" name="is_working" value="3" id="none" style="margin-left: 15px;" checked>
                                         <label for="none">None</label>
                                     </div>
@@ -422,6 +424,8 @@ $admin_barangay_name = $barangay_stmt->fetchColumn();
             <!-- #END# Basic Validation -->
         </div>
         </div>
+        <?php include('footer.php')?>    
+
     </section>
 
     <!-- Jquery Core Js -->
@@ -511,7 +515,21 @@ $admin_barangay_name = $barangay_stmt->fetchColumn();
         });
     </script>
 
+    <script>
+    let chatLoaded = false;
 
+    $('#openChatBtn').on('click', function() {
+    $('#chatPopup').modal('show');
+
+    if (!chatLoaded) {
+        $('#chatContent').html(`
+        <iframe src="live_chat.php" 
+                style="width:100%; height:100%; border:none;"></iframe>
+        `);
+        chatLoaded = true;
+    }
+    });
+    </script>
 </body>
 
 </html>
